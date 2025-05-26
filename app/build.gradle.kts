@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.projeto_lummora"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.projeto_lummora"
