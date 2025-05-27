@@ -1,0 +1,36 @@
+# Projeto Interdisciplinar
+
+## Tema:
+*(Descrever o tema do projeto)*
+
+## Integrantes do Grupo:
+- Daniel
+- Gustavo
+- Pedro Morais
+
+## Branch: `PMoraizz`
+### Status: 🚧 Em execução
+
+## Alterações em Progresso
+
+### ✅ Correções de Telas:
+- `activity_main`
+- `activity_index_timer`
+
+### 🆕 Criação de Novas Telas:
+- `activity_criar_conta`
+- `activity_esqueceu_email`
+- `activity_esqueceu_senha`
+- `activity_iniciar_sessao`
+- `activity_livros`
+
+### 🔧 Adições ao Projeto:
+- Novas imagens SVG (`/drawable`)
+- Novas fontes (`/font`)
+- Novas cores (`/values/colors.xml`)
+
+## 🚀 Tecnologias Utilizadas:
+- Java
+- Android Studio
+- XML
+
