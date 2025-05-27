@@ -28,9 +28,3 @@
 - Novas imagens SVG (`/drawable`)
 - Novas fontes (`/font`)
 - Novas cores (`/values/colors.xml`)
-
-## 🚀 Tecnologias Utilizadas:
-- Java
-- Android Studio
-- XML
-
