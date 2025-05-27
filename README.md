@@ -1,7 +1,7 @@
 # Projeto Interdisciplinar
 
 ## Tema:
-*(Descrever o tema do projeto)*
+*Aplicativo de Controle de Estudos e Hábitos para Estudantes Universitários*
 
 ## Integrantes do Grupo:
 - Daniel
