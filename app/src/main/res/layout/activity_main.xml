@@ -16,15 +16,16 @@
         app:layout_constraintGuide_percent="0.45" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnIniciar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/Silver_Lake_Blue"
         android:fontFamily="@font/inter_bold"
+        android:onClick="onIniciar"
         android:text="Iniciar Sessão"
         android:textSize="16sp"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnCriar"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
@@ -80,11 +81,12 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCriar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/YInMn_Blue"
         android:fontFamily="@font/inter_bold"
+        android:onClick="onCadastrar"
         android:text="Criar Conta"
         android:textSize="16sp"
         app:cornerRadius="10dp"

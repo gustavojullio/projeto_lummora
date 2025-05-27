@@ -22,7 +22,7 @@
             android:name=".EsqueceuSenha"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".CriarConta"
             android:exported="false" />
         <activity
             android:name=".IniciarSessao"
@@ -31,7 +31,7 @@
             android:name=".IndexTimer"
             android:exported="false" />
         <activity
-            android:name=".CriarConta"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
