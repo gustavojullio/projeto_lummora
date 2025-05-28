@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onIniciar(View v) {
+
         Intent intent = new Intent(MainActivity.this, IniciarSessao.class);
         startActivity(intent);
     }
