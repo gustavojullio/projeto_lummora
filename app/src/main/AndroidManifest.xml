@@ -34,10 +34,10 @@
             android:name=".IniciarSessao"
             android:exported="false" />
         <activity
-            android:name=".IndexTimer"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".IndexTimer"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

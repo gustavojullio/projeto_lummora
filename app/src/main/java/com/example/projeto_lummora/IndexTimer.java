@@ -32,11 +32,11 @@ public class IndexTimer extends AppCompatActivity {
 
         List<Timer> timerList = new ArrayList<>();
         try {
-            timerList.add(new Timer(2,2, "Teste 1"));
-            timerList.add(new Timer(2,2, "Teste 2"));
-            timerList.add(new Timer(2,2, "Teste 3"));
-            timerList.add(new Timer(2,2, "Teste 4"));
-            timerList.add(new Timer(2,2, "Teste 5"));
+            timerList.add(new Timer(2,23, "Teste 1"));
+            timerList.add(new Timer(2,30, "Teste 2"));
+            timerList.add(new Timer(2,12, "Teste 3"));
+            timerList.add(new Timer(2,13, "Teste 4"));
+            timerList.add(new Timer(2,50, "Teste 5"));
         } catch (Exception e) {
             Toast.makeText(this,  "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
