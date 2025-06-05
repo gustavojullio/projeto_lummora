@@ -80,40 +80,60 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
+            android:id="@+id/btnTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Timer" />
+            android:onClick="onClickTimer"
+            android:text="Timer"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnLivros"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="onClickLivors"
             android:text="Livros"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnPomodoro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Pomodoro" />
+            android:onClick="onClickPomodoro"
+            android:text="Pomodoro"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnInsigths"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Insights" />
+            android:onClick="onClickInsights"
+            android:text="Insights"
+            tools:layout_editor_absoluteX="241dp"
+            tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnAgenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Agenda" />
+            android:onClick="onClickAgenda"
+            android:text="Agenda"
+            tools:layout_editor_absoluteX="317dp"
+            tools:layout_editor_absoluteY="122dp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

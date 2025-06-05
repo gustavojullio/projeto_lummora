@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".Agenda">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/Oxford_Blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline73">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -23,46 +36,56 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
+            android:id="@+id/btnTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="onClickTimer"
             android:text="Timer"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnLivros"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="onClickLivors"
             android:text="Livros"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnPomodoro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="onClickPomodoro"
             android:text="Pomodoro"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnInsigths"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="onClickInsights"
             android:text="Insights"
             tools:layout_editor_absoluteX="241dp"
             tools:layout_editor_absoluteY="122dp" />
 
         <TextView
+            android:id="@+id/btnAgenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="onClickAgenda"
             android:text="Agenda"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="317dp"
@@ -156,4 +179,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline73"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
