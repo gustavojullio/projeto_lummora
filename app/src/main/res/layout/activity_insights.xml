@@ -414,14 +414,30 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.95" />
 
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Percentual de matérias"
+                    android:textColor="@color/Platinum"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline68"
+                    app:layout_constraintStart_toStartOf="@+id/guideline57"
+                    app:layout_constraintTop_toTopOf="@+id/guideline58" />
+
+
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/graficoMaterias"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toTopOf="@+id/guideline65"
                     app:layout_constraintEnd_toStartOf="@+id/guideline77"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline57"
-                    app:layout_constraintTop_toTopOf="@+id/guideline58" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
+           
+
+
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline68"
@@ -461,6 +477,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/PorcentualM">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="ASDSAS"
+                    android:textSize="15sp"
+                    android:textColor="@color/Platinum"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline69"
+                    app:layout_constraintStart_toStartOf="@+id/guideline59"
+                    app:layout_constraintTop_toTopOf="@+id/guideline60" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline69"

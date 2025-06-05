@@ -8,7 +8,7 @@
 - Gustavo
 - Pedro Morais
 
-## Branch: `PMoraizz`
+## Branch: `daniel`
 ### Status: 🚧 Em execução
 
 ## Alterações em Progresso
