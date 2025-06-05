@@ -24,6 +24,16 @@ public class IndexTimer extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_index_timer);
 
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+        );
+
         RecyclerView recyclerView = findViewById(R.id.recycleTimer);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -47,6 +57,7 @@ public class IndexTimer extends AppCompatActivity {
     public void onClickLivros(View view) {
         Intent intent = new Intent(IndexTimer.this, Livros.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 
@@ -54,6 +65,7 @@ public class IndexTimer extends AppCompatActivity {
     public void onClickPomodoro(View view) {
         Intent intent = new Intent(IndexTimer.this, Pomodoro.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 
@@ -61,6 +73,7 @@ public class IndexTimer extends AppCompatActivity {
     public void onClickInsights(View view) {
         Intent intent = new Intent(IndexTimer.this, Insights.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 
@@ -68,6 +81,7 @@ public class IndexTimer extends AppCompatActivity {
     public void onClickAgenda(View view) {
         Intent intent = new Intent(IndexTimer.this, Agenda.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 }

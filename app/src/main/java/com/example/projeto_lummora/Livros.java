@@ -18,6 +18,16 @@ public class Livros extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_livros);
 
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+        );
+
     }
 
 
@@ -25,6 +35,7 @@ public class Livros extends AppCompatActivity {
     public void onClickTimer(View view) {
         Intent intent = new Intent(Livros.this, IndexTimer.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 
@@ -32,6 +43,7 @@ public class Livros extends AppCompatActivity {
     public void onClickPomodoro(View view) {
         Intent intent = new Intent(Livros.this, Pomodoro.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 
@@ -39,6 +51,7 @@ public class Livros extends AppCompatActivity {
     public void onClickInsights(View view) {
         Intent intent = new Intent(Livros.this, Insights.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 
@@ -46,6 +59,7 @@ public class Livros extends AppCompatActivity {
     public void onClickAgenda(View view) {
         Intent intent = new Intent(Livros.this, Agenda.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 }

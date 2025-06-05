@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.projeto_lummora" />
-                  <option name="mobileSdkAppId" value="1:936887833672:android:6dd797e7257d0853e3b47d" />
-                  <option name="projectId" value="projeto-lummora" />
-                  <option name="projectNumber" value="936887833672" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

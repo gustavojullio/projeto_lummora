@@ -26,6 +26,16 @@ public class IniciarSessao extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_iniciar_sessao);
 
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+        );
+
         // Inicialização das variáveis
         edtEmail = findViewById(R.id.edtEmail);
         edtSenha = findViewById(R.id.edtSenha);
@@ -101,6 +111,5 @@ public class IniciarSessao extends AppCompatActivity {
     public void onEsqueceuSenha(View view) {
         Intent intent = new Intent(IniciarSessao.this, EsqueceuSenha.class);
         startActivity(intent);
-        finish();
     }
 }

@@ -27,6 +27,16 @@ public class Insights extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_insights);
 
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+        );
+
         pieChart = (PieChart) findViewById(R.id.graficoMaterias);
 
         pieChart.setUsePercentValues(true);
@@ -75,6 +85,7 @@ public class Insights extends AppCompatActivity {
     public void onClickTimer(View view) {
         Intent intent = new Intent(Insights.this, IndexTimer.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 
@@ -82,6 +93,7 @@ public class Insights extends AppCompatActivity {
     public void onClickLivros(View view) {
         Intent intent = new Intent(Insights.this, Livros.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 
@@ -89,6 +101,7 @@ public class Insights extends AppCompatActivity {
     public void onClickPomodoro(View view) {
         Intent intent = new Intent(Insights.this, Pomodoro.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 
@@ -96,6 +109,7 @@ public class Insights extends AppCompatActivity {
     public void onClickAgenda(View view) {
         Intent intent = new Intent(Insights.this, Agenda.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 
