@@ -40,6 +40,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".Insights"
+            android:exported="false" />
+        <activity
             android:name=".IndexTimer"
             android:exported="true">
             <intent-filter>
