@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Platinum"
     tools:context=".Agenda">
 
     <LinearLayout
@@ -72,7 +73,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onClickAgenda"
             android:text="Agenda"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="317dp"
@@ -193,8 +193,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/Silver_Lake_Blue"
+        android:background="@drawable/activity_botao_arredondado"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline73"
         app:layout_constraintEnd_toStartOf="@+id/guideline72"
         app:srcCompat="@drawable/group" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@ import android.graphics.Color;
 public class Cores {
 
     public static final int[] CORES_GRAFICO = {
-            Color.rgb(0,    95, 115),
+//            Color.rgb(0,    95, 115),
             Color.rgb(10,  147, 150),
             Color.rgb(148, 210, 189),
             Color.rgb(233, 216, 166),

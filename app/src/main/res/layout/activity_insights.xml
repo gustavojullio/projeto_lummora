@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Platinum"
     tools:context=".Insights">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,7 +108,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onClickInsights"
             android:text="Insights"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="241dp"
@@ -259,7 +259,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.65" />
+                    app:layout_constraintGuide_percent="0.75" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -367,7 +367,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.85" />
+                    app:layout_constraintGuide_percent="0.90" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/g1"
@@ -381,7 +381,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.15" />
+                    app:layout_constraintGuide_percent="0.05" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Média por dia"
+                    android:textColor="@color/Platinum"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline67"
+                    app:layout_constraintStart_toStartOf="@+id/g1"
+                    app:layout_constraintTop_toTopOf="@+id/g2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -395,12 +407,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MediaT">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline77"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.95" />
+
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/graficoMaterias"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toTopOf="@+id/guideline65"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline68"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline77"
                     app:layout_constraintStart_toStartOf="@+id/guideline57"
                     app:layout_constraintTop_toTopOf="@+id/guideline58" />
 
