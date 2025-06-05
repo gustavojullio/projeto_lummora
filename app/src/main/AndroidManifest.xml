@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Projeto_lummora"
         tools:targetApi="31">
         <activity
+            android:name=".Agenda"
+            android:exported="false" />
+        <activity
             android:name=".ItemTimer"
             android:exported="false" />
         <activity
