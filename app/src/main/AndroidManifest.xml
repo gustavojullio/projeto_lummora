@@ -40,10 +40,10 @@
             android:name=".IndexTimer"
             android:exported="false" />
         <activity
-            android:name=".Insights"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Insights"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

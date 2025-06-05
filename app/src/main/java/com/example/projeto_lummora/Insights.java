@@ -29,15 +29,15 @@ public class Insights extends AppCompatActivity {
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
 
-        pieChart = (PieChart) findViewById(R.id.graficoMaterias);
+        pieChart = findViewById(R.id.graficoMaterias);
 
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
@@ -50,7 +50,7 @@ public class Insights extends AppCompatActivity {
         pieChart.setTransparentCircleRadius(40f);
         pieChart.setHoleColor(ContextCompat.getColor(this, R.color.YInMn_Blue));
         pieChart.setTransparentCircleColor(ContextCompat.getColor(this, R.color.YInMn_Blue));
-
+        pieChart.setTouchEnabled(false);
 
         ArrayList<PieEntry> yValues = new ArrayList<>();
 
@@ -69,6 +69,9 @@ public class Insights extends AppCompatActivity {
         PieData data = new PieData(dataSet);
         data.setValueTextSize(14);
         data.setValueTextColor(Color.WHITE);
+
+        data.setDrawValues(false);
+        pieChart.setDrawEntryLabels(false);
 
         pieChart.setData(data);
 
