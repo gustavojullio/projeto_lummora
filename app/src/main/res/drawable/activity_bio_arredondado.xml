@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/Azure" />
+    <corners android:radius="10dp" /> <!-- Ajuste o valor para mais ou menos arredondado -->
+</shape>
