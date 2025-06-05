@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onClickLivors"
+            android:onClick="onClickLivros"
             android:text="Livros"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="122dp" />
@@ -106,7 +106,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onClickPomodoro"
             android:text="Pomodoro"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="149dp"

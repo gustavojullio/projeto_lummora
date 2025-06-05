@@ -1,6 +1,8 @@
 package com.example.projeto_lummora;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -44,5 +46,32 @@ public class IndexTimer extends AppCompatActivity {
         TimerAdapter timerAdapter = new TimerAdapter(this, timerList);
         recyclerView.setAdapter(timerAdapter);
 
+    }
+    // Método para redirecionar para a tela de livros
+    public void onClickLivros(View view) {
+        Intent intent = new Intent(IndexTimer.this, Livros.class);
+        startActivity(intent);
+        finish();
+    }
+
+    // Método para redirecionar para a tela pomodoro
+    public void onClickPomodoro(View view) {
+        Intent intent = new Intent(IndexTimer.this, Pomodoro.class);
+        startActivity(intent);
+        finish();
+    }
+
+    // Método para redirecionar para a tela de insights
+    public void onClickInsights(View view) {
+        Intent intent = new Intent(IndexTimer.this, Insights.class);
+        startActivity(intent);
+        finish();
+    }
+
+    // Método para redirecionar para a tela de agenda
+    public void onClickAgenda(View view) {
+        Intent intent = new Intent(IndexTimer.this, Agenda.class);
+        startActivity(intent);
+        finish();
     }
 }
