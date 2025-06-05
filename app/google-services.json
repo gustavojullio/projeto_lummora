@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936887833672",
+    "project_id": "projeto-lummora",
+    "storage_bucket": "projeto-lummora.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936887833672:android:6dd797e7257d0853e3b47d",
+        "android_client_info": {
+          "package_name": "com.example.projeto_lummora"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLsmbyjhs93KpB0QfJBzqrfJlR1FNKsTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
