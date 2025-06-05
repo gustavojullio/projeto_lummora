@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
@@ -28,9 +29,19 @@ public class TimerAdapter extends RecyclerView.Adapter<TimerAdapter.TimerViewHol
 
     // um botão, dois text
     @Override
-    public void onBindViewHolder(TimerViewHolder holder, int posistion) {
-        Timer timer = timerList.get(posistion);
-        String t = timer.getHora() + ":" + timer.getMin();
+    public void onBindViewHolder(@NonNull TimerViewHolder holder, int position) {
+        Timer timer = timerList.get(position);
+
+        String digitosHora = String.valueOf(timer.getHora());
+        String digitosMin = String.valueOf(timer.getMin());
+
+        if(digitosHora.length() < 2)
+            digitosHora = "0" + digitosHora;
+
+        if(digitosMin.length() < 2)
+            digitosMin = "0" + digitosMin;
+
+        String t = digitosHora + ":" + digitosMin;
 
         holder.tituloMateria.setText(timer.getTitulo());
         holder.tempo.setText(t);
