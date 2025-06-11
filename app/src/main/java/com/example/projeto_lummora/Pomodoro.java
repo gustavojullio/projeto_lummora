@@ -2,6 +2,8 @@ package com.example.projeto_lummora;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Pomodoro extends AppCompatActivity {
 
+    GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +19,7 @@ public class Pomodoro extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pomodoro);
 
+        // tela inteira
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -26,7 +30,45 @@ public class Pomodoro extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
 
+        // trocar a tela da direita e esquerda arrastando
+        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            private static final int SWIPE_THRESHOLD = 100;
+            private static final int SWIPE_VELOCITY_THRESHOLD = 100;
 
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                float diffX = e2.getX() - e1.getX();
+                float diffY = e2.getY() - e1.getY();
+
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                        if (diffX > 0) {
+                            // Swipe para a direita
+                            startActivity(new Intent(Pomodoro.this, Insights.class));
+                            finish();
+                            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+                        }else {
+                            // Swipe para a esquerda
+                            startActivity(new Intent(Pomodoro.this, Livros.class));
+                            finish();
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+        });
+
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        gestureDetector.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     // Método para redirecionar para a tela timer
