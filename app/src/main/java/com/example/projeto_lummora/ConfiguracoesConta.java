@@ -2,21 +2,19 @@ package com.example.projeto_lummora;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class ConfiguracoesUsuario extends AppCompatActivity {
+public class ConfiguracoesConta extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_configuracoes_usuario);
+        setContentView(R.layout.activity_configuracoes_conta);
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -27,16 +25,27 @@ public class ConfiguracoesUsuario extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
-
-
-
     }
-    public void onConfiguracoes(View v) {
-        Intent intent = new Intent(ConfiguracoesUsuario.this, ConfiguracoesConta.class);
-        startActivity(intent);
+
+
+
+    public void onVoltar(View view) {
+        finish();
     }
 
     public void onClickProgram(View view) {
         finish();
+        Runnable rd = new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        };
+
+        try {
+            rd.wait(100);
+        } catch (InterruptedException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

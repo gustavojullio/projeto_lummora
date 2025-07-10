@@ -2,6 +2,8 @@ package com.example.projeto_lummora;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,12 +20,15 @@ import java.util.List;
 
 public class IndexTimer extends AppCompatActivity {
 
+    GestureDetector gestureDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_index_timer);
 
+        // tela inteira
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -34,16 +39,42 @@ public class IndexTimer extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
 
+        // trocar a tela da direita e esquerda arrastando
+        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            private static final int SWIPE_THRESHOLD = 100;
+            private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                float diffX = e2.getX() - e1.getX();
+                float diffY = e2.getY() - e1.getY();
+
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                        if (diffX < 0) {
+                            // Swipe para a direita
+                            startActivity(new Intent(IndexTimer.this, Livros.class));
+                            finish();
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+        });
+
         RecyclerView recyclerView = findViewById(R.id.recycleTimer);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<Timer> timerList = new ArrayList<>();
         try {
-            timerList.add(new Timer(2,2, "Teste 1"));
-            timerList.add(new Timer(2,2, "Teste 2"));
-            timerList.add(new Timer(2,2, "Teste 3"));
-            timerList.add(new Timer(2,2, "Teste 4"));
-            timerList.add(new Timer(2,2, "Teste 5"));
+            timerList.add(new Timer(0,0, "Teste 1"));
+            timerList.add(new Timer(0,0, "Teste 2"));
+            timerList.add(new Timer(0,0, "Teste 3"));
+            timerList.add(new Timer(0,0, "Teste 4"));
+            timerList.add(new Timer(0,0, "Teste 5"));
         } catch (Exception e) {
             Toast.makeText(this,  "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -51,6 +82,12 @@ public class IndexTimer extends AppCompatActivity {
         TimerAdapter timerAdapter = new TimerAdapter(this, timerList);
         recyclerView.setAdapter(timerAdapter);
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        gestureDetector.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     // Método para redirecionar para a tela de livros
@@ -83,5 +120,11 @@ public class IndexTimer extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
+    }
+
+    // Método para redirecionar para a tela de configurações de usuário
+    public void onClickPerson(View view) {
+        Intent intent = new Intent(IndexTimer.this, ConfiguracoesUsuario.class);
+        startActivity(intent);
     }
 }

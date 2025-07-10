@@ -13,8 +13,6 @@ public class Timer {
     }
 
     public void setHora(int h) throws Exception {
-        if(h == 0)
-            throw new Exception("A hora não pode ser zero");
         this.hora = h;
     }
 
