@@ -13,8 +13,11 @@
         android:theme="@style/Theme.Projeto_lummora"
         tools:targetApi="31">
         <activity
+            android:name=".ConfiguracoesConta"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".Agenda"
             android:exported="false" />
