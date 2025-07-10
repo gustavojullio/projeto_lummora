@@ -35,14 +35,14 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:onClick="onClickProgram"
+            android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline92"
             app:layout_constraintStart_toStartOf="@+id/guideline91"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_home_24"
-            android:onClick="onClickProgram"
-            />
+            app:srcCompat="@drawable/baseline_home_24" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline83"
@@ -68,13 +68,13 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline83"
             app:layout_constraintStart_toStartOf="@+id/guideline92"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_person_24"
-            />
+            app:srcCompat="@drawable/baseline_person_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline84"

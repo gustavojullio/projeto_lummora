@@ -72,7 +72,7 @@
         <TextView
             android:id="@+id/btnTimer"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickTimer"
@@ -83,7 +83,7 @@
         <TextView
             android:id="@+id/btnLivros"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickLivros"
@@ -94,7 +94,7 @@
         <TextView
             android:id="@+id/btnPomodoro"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickPomodoro"
@@ -105,7 +105,7 @@
         <TextView
             android:id="@+id/btnInsigths"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Insights"
@@ -116,7 +116,7 @@
         <TextView
             android:id="@+id/btnAgenda"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickAgenda"
@@ -508,14 +508,14 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline92"
             app:layout_constraintStart_toStartOf="@+id/guideline91"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_home_24"
-            
-            />
+
+            app:srcCompat="@drawable/baseline_home_24" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline83"
@@ -541,13 +541,14 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:onClick="onClickPerson"
+            android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline83"
             app:layout_constraintStart_toStartOf="@+id/guideline92"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_person_24"
-            android:onClick="onClickPerson"/>
+            app:srcCompat="@drawable/baseline_person_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -570,7 +571,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline51"
@@ -584,7 +585,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.16" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline53"
