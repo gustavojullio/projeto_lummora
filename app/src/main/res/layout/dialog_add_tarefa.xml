@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome da tarefa"
+        android:labelFor="@+id/edtNomeTarefa"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/edtNomeTarefa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ex: Prova de Lógica"
+        android:inputType="textCapSentences"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tipo"
+        android:textColor="@color/black"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioProva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prova"/>
+        <RadioButton
+            android:id="@+id/radioTrabalho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Trabalho"/>
+        <RadioButton
+            android:id="@+id/radioTarefa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Tarefa"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Data"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/txtDataSelecionada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="?attr/selectableItemBackground"
+        android:hint="Clique para selecionar uma data"/>
+</LinearLayout>
