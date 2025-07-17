@@ -63,7 +63,7 @@ public class Pomodoro extends AppCompatActivity {
         btnReiniciar = findViewById(R.id.btnReiniciar);
         progressBar = findViewById(R.id.progressBar);
 
-        // --- LÓGICA DO BOTÃO INICIAR CORRIGIDA ---
+
         btnIniciar.setOnClickListener(v -> {
             if (timerRodando) return; // Segurança para evitar duplo clique
 
@@ -106,7 +106,7 @@ public class Pomodoro extends AppCompatActivity {
         }
     }
 
-    // --- NOVO MÉTODO PARA CONTINUAR O TIMER ---
+
     private void continuarTimer() {
         iniciarTimer(tempoRestanteEmMs);
     }
@@ -218,7 +218,6 @@ public class Pomodoro extends AppCompatActivity {
         }
     }
 
-    // --- SEUS MÉTODOS DE NAVEGAÇÃO E GESTOS ---
     private void setupGestureDetector() {
         gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             private static final int SWIPE_THRESHOLD = 100;
