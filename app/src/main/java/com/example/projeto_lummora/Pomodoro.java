@@ -2,24 +2,47 @@ package com.example.projeto_lummora;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class Pomodoro extends AppCompatActivity {
+
+    // Constantes de tempo em milissegundos
+    private static final long TEMPO_POMODORO = 25 * 60 * 1000;
+    private static final long TEMPO_PAUSA_CURTA = 5 * 60 * 1000;
+    private static final long TEMPO_PAUSA_LONGA = 30 * 60 * 1000;
+
+    // Elementos da UI
+    private TextView txtTimerPomodoro, txtTimerPausaCurta, txtTimerPausaLonga;
+    private Button btnIniciar, btnPausar, btnReiniciar;
+    private ProgressBar progressBar;
+
+    private CountDownTimer countDownTimer;
+    private long tempoRestanteEmMs;
+    private boolean timerRodando;
+
+    // Gerenciamento de estado do ciclo
+    private enum EstadoPomodoro { POMODORO, PAUSA_CURTA, PAUSA_LONGA, PARADO }
+    private EstadoPomodoro estadoAtual = EstadoPomodoro.PARADO;
+    private int ciclosPomodoro = 0;
 
     GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pomodoro);
 
-        // tela inteira
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -30,7 +53,173 @@ public class Pomodoro extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
 
-        // trocar a tela da direita e esquerda arrastando
+        // Inicialização dos componentes da UI
+        txtTimerPomodoro = findViewById(R.id.txtTimerPomodoro);
+        txtTimerPausaCurta = findViewById(R.id.txtTimerPausaCurta);
+        txtTimerPausaLonga = findViewById(R.id.txtTimerPausaLonga);
+
+        btnIniciar = findViewById(R.id.btnIniciar);
+        btnPausar = findViewById(R.id.btnPausar);
+        btnReiniciar = findViewById(R.id.btnReiniciar);
+        progressBar = findViewById(R.id.progressBar);
+
+        // --- LÓGICA DO BOTÃO INICIAR CORRIGIDA ---
+        btnIniciar.setOnClickListener(v -> {
+            if (timerRodando) return; // Segurança para evitar duplo clique
+
+            // Se o ciclo nunca começou, inicia o primeiro pomodoro
+            if (estadoAtual == EstadoPomodoro.PARADO) {
+                iniciarProximoCiclo();
+            } else {
+                // Se estava pausado, apenas continua de onde parou
+                continuarTimer();
+            }
+        });
+
+        btnPausar.setOnClickListener(v -> pausarTimer());
+        btnReiniciar.setOnClickListener(v -> reiniciarCiclo());
+
+        reiniciarCiclo(); // Inicia a tela no estado padrão
+        setupGestureDetector();
+    }
+
+    private void iniciarProximoCiclo() {
+        if (estadoAtual == EstadoPomodoro.PARADO) {
+            estadoAtual = EstadoPomodoro.POMODORO;
+            ciclosPomodoro = 1;
+            iniciarTimer(TEMPO_POMODORO);
+        } else if (estadoAtual == EstadoPomodoro.POMODORO) {
+            if (ciclosPomodoro == 2) {
+                estadoAtual = EstadoPomodoro.PAUSA_LONGA;
+                iniciarTimer(TEMPO_PAUSA_LONGA);
+            } else {
+                estadoAtual = EstadoPomodoro.PAUSA_CURTA;
+                iniciarTimer(TEMPO_PAUSA_CURTA);
+            }
+        } else if (estadoAtual == EstadoPomodoro.PAUSA_CURTA) {
+            estadoAtual = EstadoPomodoro.POMODORO;
+            ciclosPomodoro++;
+            iniciarTimer(TEMPO_POMODORO);
+        } else if (estadoAtual == EstadoPomodoro.PAUSA_LONGA) {
+            reiniciarCiclo();
+            Toast.makeText(this, "Ciclo Pomodoro completo!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // --- NOVO MÉTODO PARA CONTINUAR O TIMER ---
+    private void continuarTimer() {
+        iniciarTimer(tempoRestanteEmMs);
+    }
+
+    private void iniciarTimer(long duracaoMs) {
+        tempoRestanteEmMs = duracaoMs;
+        countDownTimer = new CountDownTimer(tempoRestanteEmMs, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tempoRestanteEmMs = millisUntilFinished;
+                atualizarUI(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                timerRodando = false;
+                iniciarProximoCiclo();
+            }
+        }.start();
+
+        timerRodando = true;
+        atualizarBotoes();
+    }
+
+    private void pausarTimer() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        timerRodando = false;
+        atualizarBotoes();
+    }
+
+    private void reiniciarCiclo() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        estadoAtual = EstadoPomodoro.PARADO;
+        ciclosPomodoro = 0;
+        timerRodando = false;
+        atualizarUI(TEMPO_POMODORO);
+        atualizarBotoes();
+    }
+
+    private void atualizarUI(long tempoMs) {
+        int minutos = (int) (tempoMs / 1000) / 60;
+        int segundos = (int) (tempoMs / 1000) % 60;
+        String tempoFormatado = String.format(Locale.getDefault(), "%02d:%02d", minutos, segundos);
+
+        long duracaoTotal = getDuracaoTotalEstado(estadoAtual);
+
+        // Reseta todos os textos para o padrão antes de atualizar o correto
+        txtTimerPomodoro.setText(String.format(Locale.getDefault(), "%02d:00", (TEMPO_POMODORO / 1000) / 60));
+        txtTimerPausaCurta.setText(String.format(Locale.getDefault(), "%02d:00", (TEMPO_PAUSA_CURTA / 1000) / 60));
+        txtTimerPausaLonga.setText(String.format(Locale.getDefault(), "%02d:00", (TEMPO_PAUSA_LONGA / 1000) / 60));
+
+        switch (estadoAtual) {
+            case POMODORO:
+                txtTimerPomodoro.setText(tempoFormatado);
+                break;
+            case PAUSA_CURTA:
+                txtTimerPausaCurta.setText(tempoFormatado);
+                break;
+            case PAUSA_LONGA:
+                txtTimerPausaLonga.setText(tempoFormatado);
+                break;
+            case PARADO:
+                // Já resetado acima
+                break;
+        }
+
+        progressBar.setProgress((int) (tempoMs * 100 / duracaoTotal));
+    }
+
+    private void atualizarBotoes() {
+        if (timerRodando) {
+            btnIniciar.setVisibility(View.GONE);
+            btnPausar.setVisibility(View.VISIBLE);
+            btnReiniciar.setVisibility(View.VISIBLE);
+        } else {
+            btnIniciar.setText("Continuar");
+            btnIniciar.setVisibility(View.VISIBLE);
+            btnPausar.setVisibility(View.GONE);
+            btnReiniciar.setVisibility(View.VISIBLE);
+            if (estadoAtual == EstadoPomodoro.PARADO) {
+                btnIniciar.setText("Iniciar");
+                btnReiniciar.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private long getDuracaoTotalEstado(EstadoPomodoro estado) {
+        switch (estado) {
+            case PAUSA_CURTA:
+                return TEMPO_PAUSA_CURTA;
+            case PAUSA_LONGA:
+                return TEMPO_PAUSA_LONGA;
+            case POMODORO:
+            case PARADO:
+            default:
+                return TEMPO_POMODORO;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
+    // --- SEUS MÉTODOS DE NAVEGAÇÃO E GESTOS ---
+    private void setupGestureDetector() {
         gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             private static final int SWIPE_THRESHOLD = 100;
             private static final int SWIPE_VELOCITY_THRESHOLD = 100;
@@ -38,17 +227,13 @@ public class Pomodoro extends AppCompatActivity {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 float diffX = e2.getX() - e1.getX();
-                float diffY = e2.getY() - e1.getY();
-
-                if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (Math.abs(diffX) > Math.abs(e2.getY() - e1.getY())) {
                     if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                         if (diffX > 0) {
-                            // Swipe para a esquerda
                             startActivity(new Intent(Pomodoro.this, Livros.class));
                             finish();
                             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                        }else {
-                            // Swipe para a direita
+                        } else {
                             startActivity(new Intent(Pomodoro.this, Insights.class));
                             finish();
                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -58,19 +243,17 @@ public class Pomodoro extends AppCompatActivity {
                 }
                 return false;
             }
-
         });
-
-
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        gestureDetector.onTouchEvent(ev);
+        if (gestureDetector != null) {
+            gestureDetector.onTouchEvent(ev);
+        }
         return super.dispatchTouchEvent(ev);
     }
 
-    // Método para redirecionar para a tela timer
     public void onClickTimer(View view) {
         Intent intent = new Intent(Pomodoro.this, IndexTimer.class);
         startActivity(intent);
@@ -78,7 +261,6 @@ public class Pomodoro extends AppCompatActivity {
         finish();
     }
 
-    // Método para redirecionar para a tela de livros
     public void onClickLivros(View view) {
         Intent intent = new Intent(Pomodoro.this, Livros.class);
         startActivity(intent);
@@ -86,7 +268,6 @@ public class Pomodoro extends AppCompatActivity {
         finish();
     }
 
-    // Método para redirecionar para a tela de insights
     public void onClickInsights(View view) {
         Intent intent = new Intent(Pomodoro.this, Insights.class);
         startActivity(intent);
@@ -94,7 +275,6 @@ public class Pomodoro extends AppCompatActivity {
         finish();
     }
 
-    // Método para redirecionar para a tela de agenda
     public void onClickAgenda(View view) {
         Intent intent = new Intent(Pomodoro.this, Agenda.class);
         startActivity(intent);
@@ -102,10 +282,8 @@ public class Pomodoro extends AppCompatActivity {
         finish();
     }
 
-    // Método para redirecionar para a tela de configurações de usuário
     public void onClickPerson(View view) {
         Intent intent = new Intent(Pomodoro.this, ConfiguracoesUsuario.class);
         startActivity(intent);
     }
-
 }
