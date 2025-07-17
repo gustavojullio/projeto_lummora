@@ -71,27 +71,15 @@
         app:layout_constraintStart_toStartOf="@+id/guideline78"
         app:layout_constraintTop_toTopOf="@+id/guideline84">
 
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/Platinum"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
-
         <Button
             android:id="@+id/button3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/YInMn_Blue"
-            android:text="Convidar Amigos"
-            android:textAlignment="textStart"
-            app:icon="@drawable/baseline_person_add_alt_1_24"
+            android:text="Apagar conta"
+            android:textAlignment="viewStart"
+            app:icon="@drawable/person_off"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -101,9 +89,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/YInMn_Blue"
-            android:text="Calendário"
-            android:textAlignment="textStart"
-            app:icon="@drawable/baseline_calendar_month_24"
+            android:text="Apagar Dados da Conta"
+            android:textAlignment="viewStart"
+            app:icon="@drawable/delete"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,24 +103,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/YInMn_Blue"
-            android:text="Configurações"
-            android:textAlignment="textStart"
-            app:icon="@drawable/baseline_settings_24"
+            android:text="Tema"
+            android:textAlignment="viewStart"
+            app:icon="@drawable/baseline_toggle_off_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/Platinum"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
