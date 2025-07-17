@@ -135,9 +135,9 @@ public class IndexTimer extends AppCompatActivity {
         if (activeDisciplina != null) {
             // E for o mesmo item, então pause
             if (activeDisciplina.getId().equals(disciplina.getId())) {
-                stopActiveTimer();
+                stopActiveTimer(position);
             } else { // Se for um item diferente, pare o antigo e inicie o novo
-                stopActiveTimer();
+                stopActiveTimer(position);
                 startTimer(disciplina, position);
             }
         } else { // Se nenhum timer estiver rodando, inicie
@@ -145,6 +145,8 @@ public class IndexTimer extends AppCompatActivity {
         }
     }
 
+    String tempoAnterior;
+    boolean atualizou = false;
     private void startTimer(Disciplina disciplina, int position) {
         activeDisciplina = disciplina;
         activeDisciplinaPosition = position;
@@ -168,6 +170,11 @@ public class IndexTimer extends AppCompatActivity {
                                 TimeUnit.SECONDS.toHours(totalSeconds),
                                 TimeUnit.SECONDS.toMinutes(totalSeconds) % 60,
                                 totalSeconds % 60);
+                        if (!atualizou) {
+                            tempoAnterior = timeFormatted;
+                            Toast.makeText(getApplicationContext(), tempoAnterior, Toast.LENGTH_SHORT).show();
+                            atualizou = true;
+                        }
                         tempoView.setText(timeFormatted);
                     }
                     timerHandler.postDelayed(this, 1000);
@@ -177,8 +184,12 @@ public class IndexTimer extends AppCompatActivity {
         timerHandler.postDelayed(timerRunnable, 0);
     }
 
-    private void stopActiveTimer() {
+    private void stopActiveTimer(int position) {
         if (activeDisciplina == null) return;
+        atualizou = false;
+        // textView14 id da parte total da view
+        TextView txtTotal = findViewById(R.id.tempoEstudo);
+        activeDisciplinaPosition = position;
 
         timerHandler.removeCallbacks(timerRunnable);
 
@@ -187,6 +198,54 @@ public class IndexTimer extends AppCompatActivity {
 
         long newTotalSeconds = activeDisciplina.getTempoTotalSegundos() + elapsedSeconds;
         activeDisciplina.setTempoTotalSegundos(newTotalSeconds);
+
+        // Atualiza o tempo total
+
+        RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(activeDisciplinaPosition);
+        if (viewHolder instanceof TimerAdapter.TimerViewHolder) {
+            TextView tempoView = ((TimerAdapter.TimerViewHolder) viewHolder).tempo;
+
+            String total = txtTotal.getText().toString();
+
+            // textos dos tempos separados
+            String[] parcialSeparado = tempoView.getText().toString().split(":");
+            String[] anteriorSeparado = tempoAnterior.split(":");
+            String[] totalSeparado = total.split(":");
+
+            // conversao para inteiro
+            int[] parciais  = new int[3];
+            int[] adicional = new int[3];
+            int[] totais    = new int[3];
+
+            for(int i = 0; i < 3; i++) {
+                parciais[i] = Integer.parseInt(parcialSeparado[i]);
+                adicional[i] = Integer.parseInt(anteriorSeparado[i]);
+                totais[i] = Integer.parseInt(totalSeparado[i]);
+            }
+
+            // conta do tempo que irá adicionar
+            for(int i = 0; i < 3; i++) {
+                int p = adicional[i] - parciais[i];
+
+                if (p < 0)
+                    totais[i] += p * -1;
+
+            }
+
+
+            String hora, min, seg;
+
+            hora = String.valueOf(totais[0]).length() == 1 ? "0"+totais[0] : ""+totais[0];
+            min  = String.valueOf(totais[1]).length() == 1 ? "0"+totais[1] : ""+totais[1];
+            seg  = String.valueOf(totais[2]).length() == 1 ? "0"+totais[2] : ""+totais[2];
+
+            String horaFormatada = hora + ":" + min + ":" + seg;
+
+            txtTotal.setText(horaFormatada);
+
+        }
+//
+//        // ___________________________________________
 
         // Atualiza o tempo total no Firebase
         databaseReference.child(activeDisciplina.getId()).setValue(activeDisciplina);
@@ -272,7 +331,8 @@ public class IndexTimer extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopActiveTimer(); // Salva o progresso se o usuário sair da tela
+        // ver se esse trem da erro quando fechar a tela, mudei pra ele ter a posição e ficar mais facil somar o total, o que pode gerar erro aqui
+        stopActiveTimer(-1); // Salva o progresso se o usuário sair da tela
     }
 
     private void setupGestureDetector() {

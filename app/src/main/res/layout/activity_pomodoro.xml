@@ -52,17 +52,43 @@
             app:layout_constraintTop_toTopOf="@+id/guideline41" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/tempoEstudo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="00:00:00"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/pausaCurta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="00:00:00"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/pausaLonga"
+            app:layout_constraintStart_toEndOf="@+id/tempoEstudo"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/pausaLonga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="00:00:00"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
