@@ -1,42 +1,40 @@
 package com.example.projeto_lummora;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Disciplina {
     private String id;
     private String titulo;
     private long tempoTotalSegundos;
-    
+    // NOVO CAMPO ADICIONADO
+    private Map<String, Long> historicoDiario;
+
     public Disciplina() {
+        // Inicializa o mapa para evitar erros
+        this.historicoDiario = new HashMap<>();
     }
 
     public Disciplina(String id, String titulo) {
         this.id = id;
         this.titulo = titulo;
         this.tempoTotalSegundos = 0;
+        this.historicoDiario = new HashMap<>();
     }
 
-    // Getters
-    public String getId() {
-        return id;
-    }
+    // Getters e Setters existentes...
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public long getTempoTotalSegundos() { return tempoTotalSegundos; }
+    public void setTempoTotalSegundos(long tempoTotalSegundos) { this.tempoTotalSegundos = tempoTotalSegundos; }
 
-    public String getTitulo() {
-        return titulo;
+    // NOVO GETTER E SETTER
+    public Map<String, Long> getHistoricoDiario() {
+        return historicoDiario;
     }
-
-    public long getTempoTotalSegundos() {
-        return tempoTotalSegundos;
-    }
-
-    // Setters
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public void setTempoTotalSegundos(long tempoTotalSegundos) {
-        this.tempoTotalSegundos = tempoTotalSegundos;
+    public void setHistoricoDiario(Map<String, Long> historicoDiario) {
+        this.historicoDiario = historicoDiario;
     }
 }

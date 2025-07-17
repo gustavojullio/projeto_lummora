@@ -27,9 +27,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 
 public class IndexTimer extends AppCompatActivity {
 
@@ -185,10 +190,27 @@ public class IndexTimer extends AppCompatActivity {
         long elapsedMillis = System.currentTimeMillis() - startTimeMillis;
         long elapsedSeconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillis);
 
+        // 1. Atualiza o tempo total geral
         long newTotalSeconds = activeDisciplina.getTempoTotalSegundos() + elapsedSeconds;
         activeDisciplina.setTempoTotalSegundos(newTotalSeconds);
 
-        // Atualiza o tempo total no Firebase
+        // 2. Lógica para salvar o histórico diário
+        // Pega a data de hoje no formato YYYY-MM-DD
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String dataDeHoje = sdf.format(new Date());
+
+        // Pega o histórico da disciplina
+        Map<String, Long> historico = activeDisciplina.getHistoricoDiario();
+        if(historico == null) {
+            historico = new HashMap<>();
+        }
+
+        // Pega o tempo já salvo para hoje (ou 0 se não houver) e adiciona o novo tempo
+        long tempoDeHoje = historico.getOrDefault(dataDeHoje, 0L);
+        historico.put(dataDeHoje, tempoDeHoje + elapsedSeconds);
+        activeDisciplina.setHistoricoDiario(historico);
+
+        // 3. Salva o objeto completo (com tempo total e histórico) no Firebase
         databaseReference.child(activeDisciplina.getId()).setValue(activeDisciplina);
 
         // Reseta o estado
@@ -197,10 +219,8 @@ public class IndexTimer extends AppCompatActivity {
         startTimeMillis = 0;
         timerAdapter.setRunningDisciplinaId(null);
 
-        // Notifica o adapter que o item foi alterado (para mudar o ícone para play)
-        // Isso será tratado pelo listener do Firebase, mas uma notificação imediata melhora a UI
-        for(int i = 0; i < disciplinaList.size(); i++) {
-            if(disciplinaList.get(i).getId().equals(stoppedId)) {
+        for (int i = 0; i < disciplinaList.size(); i++) {
+            if (disciplinaList.get(i).getId().equals(stoppedId)) {
                 timerAdapter.notifyItemChanged(i);
                 break;
             }

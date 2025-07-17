@@ -27,9 +27,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 
 public class Livros extends AppCompatActivity {
 
@@ -176,12 +181,34 @@ public class Livros extends AppCompatActivity {
         if (activeLivro == null) return;
 
         timerHandler.removeCallbacks(timerRunnable);
+
         long elapsedMillis = System.currentTimeMillis() - startTimeMillis;
-        long newTotalSeconds = activeLivro.getTempoTotalSegundos() + TimeUnit.MILLISECONDS.toSeconds(elapsedMillis);
+        long elapsedSeconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillis);
+
+        // 1. Atualiza o tempo total geral
+        long newTotalSeconds = activeLivro.getTempoTotalSegundos() + elapsedSeconds;
         activeLivro.setTempoTotalSegundos(newTotalSeconds);
 
+        // 2. Lógica para salvar o histórico diário
+        // Pega a data de hoje no formato YYYY-MM-DD
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String dataDeHoje = sdf.format(new Date());
+
+        // Pega o histórico do livro
+        Map<String, Long> historico = activeLivro.getHistoricoDiario();
+        if(historico == null){
+            historico = new HashMap<>();
+        }
+
+        // Pega o tempo já salvo para hoje (ou 0 se não houver) e adiciona o novo tempo
+        long tempoDeHoje = historico.getOrDefault(dataDeHoje, 0L);
+        historico.put(dataDeHoje, tempoDeHoje + elapsedSeconds);
+        activeLivro.setHistoricoDiario(historico);
+
+        // 3. Salva o objeto completo (com tempo total e histórico) no Firebase
         databaseReference.child(activeLivro.getId()).setValue(activeLivro);
 
+        // Reseta o estado
         String stoppedId = activeLivro.getId();
         activeLivro = null;
         startTimeMillis = 0;
