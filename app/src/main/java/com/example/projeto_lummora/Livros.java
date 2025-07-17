@@ -43,6 +43,9 @@ public class Livros extends AppCompatActivity {
     private LivroAdapter livroAdapter;
     private List<Livro> livroList;
 
+    private TextView txtDataAtual;
+    private TextView txtTempoTotal;
+
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
 
@@ -68,6 +71,9 @@ public class Livros extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
+        txtDataAtual = findViewById(R.id.textView12);
+        txtTempoTotal = findViewById(R.id.textView13);
+
 
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -87,7 +93,9 @@ public class Livros extends AppCompatActivity {
 
         ImageButton addLivroButton = findViewById(R.id.imageButton2);
         addLivroButton.setOnClickListener(v -> showAddEditDialog(null));
+        exibirDataAtual();
     }
+
 
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.recycleLivros);
@@ -117,12 +125,23 @@ public class Livros extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 livroList.clear();
+                long tempoTotalGeral = 0; // Variável para somar o tempo
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Livro livro = dataSnapshot.getValue(Livro.class);
                     if (livro != null) {
                         livroList.add(livro);
+                        tempoTotalGeral += livro.getTempoTotalSegundos(); // Soma o tempo de cada livro
                     }
                 }
+
+                // Formata o tempo total e exibe no TextView do cabeçalho
+                String tempoTotalFormatado = String.format(Locale.getDefault(), "%02d:%02d:%02d",
+                        TimeUnit.SECONDS.toHours(tempoTotalGeral),
+                        TimeUnit.SECONDS.toMinutes(tempoTotalGeral) % 60,
+                        tempoTotalGeral % 60);
+                txtTempoTotal.setText(tempoTotalFormatado);
+
                 livroAdapter.notifyDataSetChanged();
             }
 
@@ -349,5 +368,12 @@ public class Livros extends AppCompatActivity {
     public void onClickPerson(View view) {
         Intent intent = new Intent(Livros.this, ConfiguracoesUsuario.class);
         startActivity(intent);
+    }
+
+    private void exibirDataAtual() {
+        SimpleDateFormat formatadorData = new SimpleDateFormat("E, dd/MM", new Locale("pt", "BR"));
+        String dataFormatada = formatadorData.format(new Date());
+        dataFormatada = dataFormatada.substring(0, 1).toUpperCase() + dataFormatada.substring(1).replace(".", "");
+        txtDataAtual.setText(dataFormatada);
     }
 }

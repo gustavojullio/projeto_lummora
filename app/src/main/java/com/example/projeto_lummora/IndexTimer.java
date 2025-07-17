@@ -42,7 +42,8 @@ public class IndexTimer extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TimerAdapter timerAdapter;
     private List<Disciplina> disciplinaList;
-
+    private TextView txtDataAtual;
+    private TextView txtTempoTotal;
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
 
@@ -68,6 +69,9 @@ public class IndexTimer extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
 
+        txtDataAtual = findViewById(R.id.textView2);
+        txtTempoTotal = findViewById(R.id.textView14);
+
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
 
@@ -88,6 +92,8 @@ public class IndexTimer extends AppCompatActivity {
         // Configura o botão para adicionar nova disciplina
         ImageButton addDisciplinaButton = findViewById(R.id.imageButton4);
         addDisciplinaButton.setOnClickListener(v -> showAddEditDialog(null));
+
+        exibirDataAtual();
     }
 
     private void setupRecyclerView() {
@@ -119,12 +125,23 @@ public class IndexTimer extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 disciplinaList.clear();
+                long tempoTotalGeral = 0; // Variável para somar o tempo
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Disciplina disciplina = dataSnapshot.getValue(Disciplina.class);
                     if (disciplina != null) {
                         disciplinaList.add(disciplina);
+                        tempoTotalGeral += disciplina.getTempoTotalSegundos(); // Soma o tempo de cada disciplina
                     }
                 }
+
+                // Formata o tempo total e exibe no TextView do cabeçalho
+                String tempoTotalFormatado = String.format(Locale.getDefault(), "%02d:%02d:%02d",
+                        TimeUnit.SECONDS.toHours(tempoTotalGeral),
+                        TimeUnit.SECONDS.toMinutes(tempoTotalGeral) % 60,
+                        tempoTotalGeral % 60);
+                txtTempoTotal.setText(tempoTotalFormatado);
+
                 timerAdapter.notifyDataSetChanged();
             }
 
@@ -350,5 +367,12 @@ public class IndexTimer extends AppCompatActivity {
     public void onClickPerson(View view) {
         Intent intent = new Intent(IndexTimer.this, ConfiguracoesUsuario.class);
         startActivity(intent);
+    }
+
+    private void exibirDataAtual() {
+        SimpleDateFormat formatadorData = new SimpleDateFormat("E, dd/MM", new Locale("pt", "BR"));
+        String dataFormatada = formatadorData.format(new Date());
+        dataFormatada = dataFormatada.substring(0, 1).toUpperCase() + dataFormatada.substring(1).replace(".", "");
+        txtDataAtual.setText(dataFormatada);
     }
 }
