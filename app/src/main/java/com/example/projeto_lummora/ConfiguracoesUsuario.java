@@ -44,7 +44,7 @@ public class ConfiguracoesUsuario extends AppCompatActivity {
     public void onClickLogout(View view) {
         FirebaseAuth.getInstance().signOut();
         Intent it = new Intent(ConfiguracoesUsuario.this, IniciarSessao.class);
-        finish();
         startActivity(it);
+        finishAffinity();
     }
 }
