@@ -18,9 +18,9 @@ import java.util.Locale;
 public class Pomodoro extends AppCompatActivity {
 
     // Constantes de tempo em milissegundos
-    private static final long TEMPO_POMODORO = 25 * 60 * 1000;
-    private static final long TEMPO_PAUSA_CURTA = 5 * 60 * 1000;
-    private static final long TEMPO_PAUSA_LONGA = 30 * 60 * 1000;
+    private static long TEMPO_POMODORO;
+    private static long TEMPO_PAUSA_CURTA;
+    private static long TEMPO_PAUSA_LONGA;
 
     // Elementos da UI
     private TextView txtTimerPomodoro, txtTimerPausaCurta, txtTimerPausaLonga;
@@ -52,6 +52,11 @@ public class Pomodoro extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
+        /*
+        * private static final long TEMPO_POMODORO = 25 * 60 * 1000;
+          private static final long TEMPO_PAUSA_CURTA = 5 * 60 * 1000;
+          private static final long TEMPO_PAUSA_LONGA = 30 * 60 * 1000;
+        * */
 
         // Inicialização dos componentes da UI
         txtTimerPomodoro = findViewById(R.id.txtTimerPomodoro);
@@ -112,6 +117,14 @@ public class Pomodoro extends AppCompatActivity {
     }
 
     private void iniciarTimer(long duracaoMs) {
+        int tempoPomodoro = Integer.parseInt(txtTimerPomodoro.getText().toString());
+        int tempoCurto = Integer.parseInt(txtTimerPausaCurta.getText().toString());
+        int tempoLongo = Integer.parseInt(txtTimerPausaLonga.getText().toString());
+
+        TEMPO_POMODORO = tempoPomodoro * 60 * 1000;
+        TEMPO_PAUSA_CURTA = tempoCurto * 60 * 1000;
+        TEMPO_PAUSA_LONGA = tempoLongo * 60 * 1000;
+        
         tempoRestanteEmMs = duracaoMs;
         countDownTimer = new CountDownTimer(tempoRestanteEmMs, 1000) {
             @Override
