@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,5 +39,12 @@ public class ConfiguracoesUsuario extends AppCompatActivity {
 
     public void onClickProgram(View view) {
         finish();
+    }
+
+    public void onClickLogout(View view) {
+        FirebaseAuth.getInstance().signOut();
+        Intent it = new Intent(ConfiguracoesUsuario.this, IniciarSessao.class);
+        finish();
+        startActivity(it);
     }
 }
