@@ -3,14 +3,19 @@ package com.example.projeto_lummora;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
@@ -18,9 +23,13 @@ import java.util.Locale;
 public class Pomodoro extends AppCompatActivity {
 
     // Constantes de tempo em milissegundos
-    private static long TEMPO_POMODORO;
-    private static long TEMPO_PAUSA_CURTA;
-    private static long TEMPO_PAUSA_LONGA;
+    private static long TEMPO_POMODORO = 1;
+    private static long TEMPO_PAUSA_CURTA = 1;
+    private static long TEMPO_PAUSA_LONGA = 1;
+
+    private long tempoPomodoro;
+    private long tempoCurto;
+    private long tempoLongo;
 
     // Elementos da UI
     private TextView txtTimerPomodoro, txtTimerPausaCurta, txtTimerPausaLonga;
@@ -68,8 +77,28 @@ public class Pomodoro extends AppCompatActivity {
         btnReiniciar = findViewById(R.id.btnReiniciar);
         progressBar = findViewById(R.id.progressBar);
 
-
         btnIniciar.setOnClickListener(v -> {
+            String[] vetPomo = txtTimerPomodoro.getText().toString().split(":");
+            String txtPomo = vetPomo[0];
+
+            String[] vetCurto = txtTimerPomodoro.getText().toString().split(":");
+            String txtCurto = vetCurto[0];
+
+            String[] vetLongo = txtTimerPomodoro.getText().toString().split(":");
+            String txtLongo = vetLongo[0];
+
+            txtPomo = txtPomo.equals("00") ? "10" : txtPomo;
+            txtCurto = txtCurto.equals("00") ? "10" : txtPomo;
+            txtLongo = txtLongo.equals("00") ? "10" : txtPomo;
+
+            tempoPomodoro = Long.parseLong(txtPomo);
+            tempoCurto = Long.parseLong(txtCurto);
+            tempoLongo = Long.parseLong(txtLongo);
+
+            TEMPO_POMODORO = tempoPomodoro * 60 * 1000;
+            TEMPO_PAUSA_CURTA = tempoCurto * 60 * 1000;
+            TEMPO_PAUSA_LONGA = tempoLongo * 60 * 1000;
+
             if (timerRodando) return; // Segurança para evitar duplo clique
 
             // Se o ciclo nunca começou, inicia o primeiro pomodoro
@@ -86,6 +115,28 @@ public class Pomodoro extends AppCompatActivity {
 
         reiniciarCiclo(); // Inicia a tela no estado padrão
         setupGestureDetector();
+    }
+
+    public void onClickEditarPomodoro(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Editar Pomodoro");
+
+        String txtPomo = String.valueOf(tempoPomodoro);
+        String txtCurto = String.valueOf(tempoCurto);
+        String txtLongo = String.valueOf(tempoLongo);
+
+        final EditText inputPomo = new EditText(this);
+        final EditText inputCurto = new EditText(this);
+        final EditText inputLongo = new EditText(this);
+
+        inputPomo.setInputType(InputType.TYPE_CLASS_NUMBER);
+        inputCurto.setInputType(InputType.TYPE_CLASS_NUMBER);
+        inputLongo.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        inputPomo.setHint("Pomodoro");
+        builder.setView(inputPomo);
+
+        builder.show();
     }
 
     private void iniciarProximoCiclo() {
@@ -117,14 +168,6 @@ public class Pomodoro extends AppCompatActivity {
     }
 
     private void iniciarTimer(long duracaoMs) {
-        int tempoPomodoro = Integer.parseInt(txtTimerPomodoro.getText().toString());
-        int tempoCurto = Integer.parseInt(txtTimerPausaCurta.getText().toString());
-        int tempoLongo = Integer.parseInt(txtTimerPausaLonga.getText().toString());
-
-        TEMPO_POMODORO = tempoPomodoro * 60 * 1000;
-        TEMPO_PAUSA_CURTA = tempoCurto * 60 * 1000;
-        TEMPO_PAUSA_LONGA = tempoLongo * 60 * 1000;
-        
         tempoRestanteEmMs = duracaoMs;
         countDownTimer = new CountDownTimer(tempoRestanteEmMs, 1000) {
             @Override
