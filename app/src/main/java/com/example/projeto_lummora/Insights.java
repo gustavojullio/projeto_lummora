@@ -1,7 +1,10 @@
 package com.example.projeto_lummora;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -44,11 +47,23 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
+import android.widget.Button;
+import androidx.core.content.FileProvider;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class Insights extends AppCompatActivity {
 
     private PieChart graficoMaterias, graficoLivros;
     private BarChart graficoMediaSemanal;
     private TextView txtTempoTotalGeral, txtMediaDiaria;
+    private Button btnGerarRelatorio;
 
     private List<Disciplina> listaDisciplinas = new ArrayList<>();
     private List<Livro> listaLivros = new ArrayList<>();
@@ -79,9 +94,19 @@ public class Insights extends AppCompatActivity {
         txtTempoTotalGeral = findViewById(R.id.txtTempoTotalGeral);
         txtMediaDiaria = findViewById(R.id.txtMediaDiaria);
 
+        btnGerarRelatorio = findViewById(R.id.btnGerarRelatorio);
+        btnGerarRelatorio.setOnClickListener(v -> {
+            if (listaDisciplinas.isEmpty() && listaLivros.isEmpty()) {
+                Toast.makeText(this, "Não há dados para gerar o relatório.", Toast.LENGTH_SHORT).show();
+            } else {
+                gerarEEnviarRelatorioPDF();
+            }
+        });
+
 
         loadAllDataFromFirebase();
     }
+
 
     private void loadAllDataFromFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -359,5 +384,207 @@ public class Insights extends AppCompatActivity {
     public void onClickPerson(View view) {
         Intent intent = new Intent(Insights.this, ConfiguracoesUsuario.class);
         startActivity(intent);
+    }
+
+    private void gerarEEnviarRelatorioPDF() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null || user.getEmail() == null) {
+            Toast.makeText(this, "Não foi possível encontrar o e-mail do usuário.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            File pdfFile = criarPdfRelatorio();
+            enviarEmailComAnexo(user.getEmail(), pdfFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erro ao gerar PDF: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    
+
+    private File criarPdfRelatorio() throws IOException {
+        PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+        Canvas canvas = page.getCanvas();
+        Paint paint = new Paint();
+
+        int pageHeight = canvas.getHeight();
+        int pageWidth = canvas.getWidth();
+        int margin = 40;
+        int yPosition = 0;
+
+
+        Typeface robotoBold = Typeface.create("sans-serif", Typeface.BOLD);
+        Typeface robotoRegular = Typeface.create("sans-serif", Typeface.NORMAL);
+        try {
+            robotoBold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
+            robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        } catch (Exception e) {
+
+        }
+
+
+        int headerHeight = 120;
+        paint.setColor(ContextCompat.getColor(this, R.color.Oxford_Blue));
+        canvas.drawRect(0, 0, pageWidth, headerHeight, paint);
+
+
+        try {
+            Drawable drawable = ContextCompat.getDrawable(this, R.drawable.logo_branca);
+            if (drawable != null) {
+                Bitmap logo = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
+                Canvas canvasLogo = new Canvas(logo);
+                drawable.setBounds(0, 0, canvasLogo.getWidth(), canvasLogo.getHeight());
+                drawable.draw(canvasLogo);
+                Bitmap scaledLogo = Bitmap.createScaledBitmap(logo, 60, 60, true);
+                canvas.drawBitmap(scaledLogo, pageWidth - margin - scaledLogo.getWidth(), (headerHeight - scaledLogo.getHeight()) / 2, null);
+            }
+        } catch (Exception e) { }
+
+
+        yPosition = 50;
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(28f);
+        paint.setTypeface(robotoBold);
+        canvas.drawText("Lummora", margin, yPosition, paint);
+
+        // Título do Relatório
+        yPosition += 25;
+        paint.setTextSize(18f);
+
+        canvas.drawText("Relatório de Insights", margin, yPosition, paint);
+
+        // Subtítulo com Data e Hora
+        yPosition += 20;
+        paint.setTextSize(12f);
+        paint.setTypeface(robotoRegular);
+        String dataRelatorio = new SimpleDateFormat("dd/MM/yyyy, HH:mm", new Locale("pt", "BR")).format(new Date());
+        canvas.drawText("Gerado em: " + dataRelatorio, margin, yPosition, paint);
+
+        yPosition = headerHeight + 40;
+
+
+
+
+
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(18f);
+        paint.setTypeface(robotoBold);
+        canvas.drawText("Resumo Geral de Foco", margin, yPosition, paint);
+        yPosition += 25;
+
+        paint.setTextSize(14f);
+        paint.setTypeface(robotoRegular);
+        canvas.drawText("Tempo Total de Foco: " + txtTempoTotalGeral.getText().toString(), margin, yPosition, paint);
+        yPosition += 20;
+        canvas.drawText("Média Diária de Foco: " + txtMediaDiaria.getText().toString(), margin, yPosition, paint);
+        yPosition += 40;
+
+
+        if (!listaDisciplinas.isEmpty()) {
+            paint.setTextSize(16f);
+            paint.setTypeface(robotoBold);
+            canvas.drawText("Detalhamento por Disciplina", margin, yPosition, paint);
+            yPosition += 25;
+            long tempoTotalDisciplinas = listaDisciplinas.stream().mapToLong(Disciplina::getTempoTotalSegundos).sum();
+            paint.setTextSize(12f);
+            paint.setTypeface(robotoBold);
+            canvas.drawText("Disciplina", margin, yPosition, paint);
+            canvas.drawText("Tempo de Foco", margin + 300, yPosition, paint);
+            canvas.drawText("% do Total", margin + 450, yPosition, paint);
+            yPosition += 15;
+            canvas.drawLine(margin, yPosition, pageWidth - margin, yPosition, paint);
+            yPosition += 20;
+            paint.setTypeface(robotoRegular);
+            for (Disciplina d : listaDisciplinas) {
+                float percentual = (tempoTotalDisciplinas > 0) ? (d.getTempoTotalSegundos() * 100.0f / tempoTotalDisciplinas) : 0;
+                canvas.drawText(d.getTitulo(), margin, yPosition, paint);
+                canvas.drawText(formatarTempoHHMMSS(d.getTempoTotalSegundos()), margin + 300, yPosition, paint);
+                canvas.drawText(String.format(Locale.getDefault(), "%.1f%%", percentual), margin + 450, yPosition, paint);
+                yPosition += 20;
+            }
+            yPosition += 30;
+        }
+
+
+        if (!listaLivros.isEmpty()) {
+            paint.setTextSize(16f);
+            paint.setTypeface(robotoBold);
+            canvas.drawText("Detalhamento por Livro", margin, yPosition, paint);
+            yPosition += 25;
+            long tempoTotalLivros = listaLivros.stream().mapToLong(Livro::getTempoTotalSegundos).sum();
+            paint.setTextSize(12f);
+            paint.setTypeface(robotoBold);
+            canvas.drawText("Livro", margin, yPosition, paint);
+            canvas.drawText("Tempo de Leitura", margin + 300, yPosition, paint);
+            canvas.drawText("% do Total", margin + 450, yPosition, paint);
+            yPosition += 15;
+            canvas.drawLine(margin, yPosition, pageWidth - margin, yPosition, paint);
+            yPosition += 20;
+            paint.setTypeface(robotoRegular);
+            for (Livro l : listaLivros) {
+                float percentual = (tempoTotalLivros > 0) ? (l.getTempoTotalSegundos() * 100.0f / tempoTotalLivros) : 0;
+                canvas.drawText(l.getTitulo(), margin, yPosition, paint);
+                canvas.drawText(formatarTempoHHMMSS(l.getTempoTotalSegundos()), margin + 300, yPosition, paint);
+                canvas.drawText(String.format(Locale.getDefault(), "%.1f%%", percentual), margin + 450, yPosition, paint);
+                yPosition += 20;
+            }
+            yPosition += 40;
+        }
+
+
+        if (!listaDisciplinas.isEmpty()) {
+            Bitmap bitmapDisciplinas = graficoMaterias.getChartBitmap();
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmapDisciplinas, 250, 250, true);
+            canvas.drawBitmap(scaledBitmap, margin, yPosition, null);
+        }
+        if (!listaLivros.isEmpty()) {
+            Bitmap bitmapLivros = graficoLivros.getChartBitmap();
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmapLivros, 250, 250, true);
+            canvas.drawBitmap(scaledBitmap, margin + 260, yPosition, null);
+        }
+
+
+        int footerY = pageHeight - 40;
+        paint.setColor(ContextCompat.getColor(this, R.color.Oxford_Blue));
+        canvas.drawRect(0, footerY, pageWidth, pageHeight, paint);
+
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(10f);
+        paint.setTypeface(robotoRegular);
+        String rodape = "Lummora - Foco e Produtividade";
+        float textWidth = paint.measureText(rodape);
+        canvas.drawText(rodape, (pageWidth - textWidth) / 2, footerY + 25, paint);
+
+
+        document.finishPage(page);
+
+        File reportsDir = new File(getCacheDir(), "reports");
+        if (!reportsDir.exists()) {
+            reportsDir.mkdirs();
+        }
+        File file = new File(reportsDir, "relatorio_insights_lummora.pdf");
+        FileOutputStream fos = new FileOutputStream(file);
+        document.writeTo(fos);
+        document.close();
+        fos.close();
+
+        return file;
+    }
+    private void enviarEmailComAnexo(String emailUsuario, File file) {
+        Uri path = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", file);
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("application/pdf");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailUsuario});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Seu Relatório de Insights - Lummora");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Olá!\n\nEm anexo está o seu relatório de desempenho gerado pelo app Lummora.\n\nContinue focado!");
+        emailIntent.putExtra(Intent.EXTRA_STREAM, path);
+        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        startActivity(Intent.createChooser(emailIntent, "Enviar e-mail via..."));
     }
 }
