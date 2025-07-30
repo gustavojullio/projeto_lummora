@@ -3,28 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@drawable/dialog_background"> <TextView
-    android:id="@+id/dialog_title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Adicionar Nova Disciplina"
-    android:textSize="20sp"
-    android:textColor="@color/Oxford_Blue"
-    android:textStyle="bold"
-    android:gravity="center"
-    android:layout_marginBottom="20dp"/>
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/adicionar_nova_disciplina"
+        android:textColor="@color/Oxford_Blue"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_discipline_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome da Disciplina"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="12dp"
+        android:hint="@string/nome_da_disciplina"
         app:boxStrokeColor="@color/Oxford_Blue"
-        app:hintTextColor="@color/Oxford_Blue"
-        android:layout_marginBottom="12dp">
+        app:hintTextColor="@color/Oxford_Blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_discipline_name"
@@ -36,13 +38,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_discipline_color"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cor da Disciplina (ex: #RRGGBB)"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/cor_da_disciplina_ex_rrggbb"
         app:boxStrokeColor="@color/Oxford_Blue"
-        app:hintTextColor="@color/Oxford_Blue"
-        android:layout_marginBottom="20dp">
+        app:hintTextColor="@color/Oxford_Blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_discipline_color"

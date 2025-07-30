@@ -2,43 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="10dp"
-    android:gravity="center_vertical">
+    android:paddingVertical="10dp">
 
     <LinearLayout
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtDiaDaSemana"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:text="@string/semana"
             android:textAllCaps="true"
-            android:text="qua"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/txtDiaDoMes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:text="@string/dia"
             android:textColor="@color/black"
-            android:text="08"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/txtNomeTarefa"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginStart="16dp"
-        android:padding="12dp"
-        android:textColor="@color/white"
+        android:layout_weight="1"
         android:background="@drawable/activity_botao_arredondado"
-        android:text="Nome da Tarefa"/>
+        android:padding="12dp"
+        android:text="@string/nome_da_tarefa"
+        android:textColor="@color/white" />
 </LinearLayout>

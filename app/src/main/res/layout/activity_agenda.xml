@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickTimer"
-            android:text="Timer"
+            android:text="@string/timer"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="122dp" />
 
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickLivros"
-            android:text="Livros"
+            android:text="@string/livros"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="122dp" />
 
@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickPomodoro"
-            android:text="Pomodoro"
+            android:text="@string/pomodoro"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="122dp" />
 
@@ -63,7 +63,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onClickInsights"
-            android:text="Insights"
+            android:text="@string/insights"
             tools:layout_editor_absoluteX="241dp"
             tools:layout_editor_absoluteY="122dp" />
 
@@ -73,7 +73,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Agenda"
+            android:text="@string/agenda"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="317dp"
             tools:layout_editor_absoluteY="122dp" />
@@ -116,9 +116,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Agenda"
+            android:text="@string/agenda"
             android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
             app:layout_constraintTop_toTopOf="@+id/guideline41" />
@@ -140,11 +140,11 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:contentDescription="@string/home"
             android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline92"
             app:layout_constraintStart_toStartOf="@+id/guideline91"
-
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_home_24" />
 
@@ -173,6 +173,7 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:contentDescription="@string/person"
             android:onClick="onClickPerson"
             android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -240,6 +241,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="@drawable/activity_botao_arredondado"
+        android:contentDescription="@string/add"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline73"
         app:layout_constraintEnd_toStartOf="@+id/guideline72"

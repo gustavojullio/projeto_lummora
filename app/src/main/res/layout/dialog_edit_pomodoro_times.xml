@@ -3,26 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@drawable/dialog_background"> <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Definir Tempos do Pomodoro"
-    android:textSize="20sp"
-    android:textColor="@color/Oxford_Blue"
-    android:textStyle="bold"
-    android:gravity="center"
-    android:layout_marginBottom="20dp"/>
+    android:padding="24dp">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pomodoro (minutos)"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/inter_black"
+        android:gravity="center"
+        android:text="@string/definir_tempos_do_pomodoro"
+        android:textColor="@color/Oxford_Blue"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="@string/pomodoro_minutos"
         app:boxStrokeColor="@color/Oxford_Blue"
-        app:hintTextColor="@color/Oxford_Blue"
-        android:layout_marginBottom="12dp">
+        app:hintTextColor="@color/Oxford_Blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_pomodoro_time"
@@ -33,13 +36,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pausa Curta (minutos)"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="12dp"
+        android:hint="@string/pausa_curta_minutos"
         app:boxStrokeColor="@color/Oxford_Blue"
-        app:hintTextColor="@color/Oxford_Blue"
-        android:layout_marginBottom="12dp">
+        app:hintTextColor="@color/Oxford_Blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_short_break_time"
@@ -50,13 +53,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pausa Longa (minutos)"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/pausa_longa_minutos"
         app:boxStrokeColor="@color/Oxford_Blue"
-        app:hintTextColor="@color/Oxford_Blue"
-        android:layout_marginBottom="20dp">
+        app:hintTextColor="@color/Oxford_Blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_long_break_time"

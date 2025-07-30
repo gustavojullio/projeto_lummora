@@ -17,18 +17,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Insights"
+            android:text="@string/insights"
             android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -44,11 +45,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-        <TextView android:id="@+id/btnTimer" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickTimer" android:text="Timer" />
-        <TextView android:id="@+id/btnLivros" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickLivros" android:text="Livros" />
-        <TextView android:id="@+id/btnPomodoro" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickPomodoro" android:text="Pomodoro" />
-        <TextView android:id="@+id/btnInsigths" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="Insights" android:textStyle="bold" />
-        <TextView android:id="@+id/btnAgenda" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickAgenda" android:text="Agenda" />
+
+        <TextView
+            android:id="@+id/btnTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickTimer"
+            android:text="@string/timer" />
+
+        <TextView
+            android:id="@+id/btnLivros"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickLivros"
+            android:text="@string/livros" />
+
+        <TextView
+            android:id="@+id/btnPomodoro"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickPomodoro"
+            android:text="@string/pomodoro" />
+
+        <TextView
+            android:id="@+id/btnInsigths"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/insights"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickAgenda"
+            android:text="@string/agenda" />
     </LinearLayout>
 
     <ScrollView
@@ -67,33 +108,59 @@
             android:padding="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="@color/YInMn_Blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/YInMn_Blue"
                 android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:gravity="center"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-                    <TextView android:text="Tempo Total" android:textColor="@color/Platinum" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <TextView android:id="@+id/txtTempoTotalGeral" android:text="00:00:00" android:textColor="@color/Platinum" android:textSize="34sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tempo_total"
+                        android:textColor="@color/Platinum"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTempoTotalGeral"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_00_00_00"
+                        android:textColor="@color/Platinum"
+                        android:textSize="34sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:gravity="center"
-                    app:layout_constraintStart_toEndOf="@id/guideline_center"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline_center"
                     app:layout_constraintTop_toTopOf="parent">
-                    <TextView android:text="Média Diária" android:textColor="@color/Platinum" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <TextView android:id="@+id/txtMediaDiaria" android:text="00:00:00" android:textColor="@color/Platinum" android:textSize="34sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/media_diaria"
+                        android:textColor="@color/Platinum"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtMediaDiaria"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_00_00_00"
+                        android:textColor="@color/Platinum"
+                        android:textSize="34sp" />
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.Guideline
@@ -101,52 +168,73 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.5"/>
+                    app:layout_constraintGuide_percent="0.5" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/YInMn_Blue"
                 android:layout_marginTop="16dp"
+                android:background="@color/YInMn_Blue"
+                android:orientation="vertical"
                 android:padding="16dp">
-                <TextView android:text="Média de Foco Semanal" android:textColor="@color/Platinum" android:textSize="16sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/media_de_foco_semanal"
+                    android:textColor="@color/Platinum"
+                    android:textSize="16sp" />
+
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/graficoMediaSemanal"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/YInMn_Blue"
                 android:layout_marginTop="16dp"
+                android:background="@color/YInMn_Blue"
+                android:orientation="vertical"
                 android:padding="16dp">
-                <TextView android:text="Tempo por Disciplina" android:textColor="@color/Platinum" android:textSize="16sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tempo_por_disciplina"
+                    android:textColor="@color/Platinum"
+                    android:textSize="16sp" />
+
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/graficoMaterias"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/YInMn_Blue"
                 android:layout_marginTop="16dp"
+                android:background="@color/YInMn_Blue"
+                android:orientation="vertical"
                 android:padding="16dp">
-                <TextView android:text="Tempo por Livro" android:textColor="@color/Platinum" android:textSize="16sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tempo_por_livro"
+                    android:textColor="@color/Platinum"
+                    android:textSize="16sp" />
+
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/graficoLivros"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
 
             <Button
@@ -154,15 +242,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:padding="12dp"
-
-                android:text="Gerar Relatório"
                 android:background="@drawable/button_rounded_blue"
-                android:textColor="@color/white"
-                android:drawableStart="@drawable/ic_download_report"
+
+                android:padding="12dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                app:backgroundTint="@null" />
+                android:text="@string/gerar_relatorio"
+                android:textAlignment="viewStart"
+                android:textColor="@color/white"
+                app:backgroundTint="@null"
+                app:icon="@drawable/ic_download_report" />
 
         </LinearLayout>
     </ScrollView>
@@ -176,15 +265,73 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline44">
-        <ImageView android:id="@+id/imageView3" android:layout_width="wrap_content" android:layout_height="0dp" android:paddingHorizontal="20dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@+id/guideline92" app:layout_constraintStart_toStartOf="@+id/guideline91" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@drawable/baseline_home_24" />
-        <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline91" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" app:layout_constraintGuide_percent="0.1" />
-        <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline92" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" app:layout_constraintGuide_percent="0.5" />
-        <ImageView android:id="@+id/imageView4" android:layout_width="wrap_content" android:layout_height="0dp" android:onClick="onClickPerson" android:paddingHorizontal="20dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@+id/guideline83" app:layout_constraintStart_toStartOf="@+id/guideline92" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@drawable/baseline_person_24" />
-        <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline83" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" app:layout_constraintGuide_percent="0.9" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:contentDescription="@string/home"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline92"
+            app:layout_constraintStart_toStartOf="@+id/guideline91"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_home_24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline91"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline92"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:contentDescription="@string/person"
+            android:onClick="onClickPerson"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline83"
+            app:layout_constraintStart_toStartOf="@+id/guideline92"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_person_24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline83"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline44" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" app:layout_constraintGuide_percent="0.92" />
-    <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline52" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" app:layout_constraintGuide_percent="0.15" />
-    <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline53" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" app:layout_constraintGuide_percent="0.2" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

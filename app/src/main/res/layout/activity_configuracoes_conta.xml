@@ -13,6 +13,7 @@
         android:id="@+id/imgVoltar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/voltar"
         android:onClick="onVoltar"
         app:layout_constraintStart_toStartOf="@+id/guideline78"
         app:layout_constraintTop_toTopOf="@+id/guideline81"
@@ -23,8 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
-
+        app:layout_constraintGuide_percent="0.25" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -75,9 +75,9 @@
             android:id="@+id/button3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/YInMn_Blue"
-            android:text="Apagar conta"
+            android:text="@string/apagar_conta"
             android:textAlignment="viewStart"
             app:icon="@drawable/person_off"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -88,27 +88,26 @@
             android:id="@+id/button2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/YInMn_Blue"
-            android:text="Apagar Dados da Conta"
+            android:text="@string/apagar_dados_da_conta"
             android:textAlignment="viewStart"
             app:icon="@drawable/delete"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/YInMn_Blue"
-            android:text="Tema"
-            android:textAlignment="viewStart"
-            app:icon="@drawable/baseline_toggle_off_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/Platinum"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

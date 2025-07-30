@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.55" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline90"
@@ -36,6 +36,7 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:contentDescription="@string/home"
             android:onClick="onClickProgram"
             android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,6 +70,7 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:contentDescription="@string/person"
             android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline83"
@@ -136,6 +138,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/logo"
             app:layout_constraintBottom_toTopOf="@+id/guideline89"
             app:layout_constraintEnd_toStartOf="@+id/guideline86"
             app:layout_constraintTop_toTopOf="@+id/guideline87"
@@ -175,7 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/inter"
-            android:text="Pedro Augusto Morais Carvalho"
+            android:text="@string/name_user"
             android:textColor="@color/Platinum"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
@@ -191,7 +194,7 @@
             android:ems="10"
             android:fontFamily="@font/inter"
             android:gravity="start|top"
-            android:hint="Adicione sua bio..."
+            android:hint="@string/adicione_sua_bio"
             android:inputType="textMultiLine"
             android:lines="3"
             android:maxLength="100"
@@ -203,7 +206,8 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline88"
             app:layout_constraintEnd_toStartOf="@+id/guideline86"
             app:layout_constraintStart_toStartOf="@+id/guideline85"
-            app:layout_constraintTop_toTopOf="@+id/guideline89" />
+            app:layout_constraintTop_toTopOf="@+id/guideline89"
+            tools:ignore="Autofill" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -232,11 +236,12 @@
             android:id="@+id/button3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/YInMn_Blue"
-            android:text="Convidar Amigos"
+            android:text="@string/convidar_amigos"
             android:textAlignment="textStart"
             app:icon="@drawable/baseline_person_add_alt_1_24"
-            app:layout_constraintBottom_toTopOf="@+id/btnLogout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
@@ -246,7 +251,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/YInMn_Blue"
-            android:text="Calendário"
+            android:text="@string/calendario"
             android:textAlignment="textStart"
             app:icon="@drawable/baseline_calendar_month_24"
             app:layout_constraintBottom_toTopOf="@+id/button3"
@@ -261,7 +266,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/YInMn_Blue"
             android:onClick="onConfiguracoes"
-            android:text="Configurações"
+            android:text="@string/configuracoes"
             android:textAlignment="textStart"
             app:icon="@drawable/baseline_settings_24"
             app:layout_constraintEnd_toEndOf="parent"
@@ -280,31 +285,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
-        <View
-            android:id="@+id/divider7"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/Platinum"
-            app:layout_constraintBottom_toTopOf="@+id/btnLogout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/YInMn_Blue"
-            android:text="Sair da conta"
-            android:textAlignment="textStart"
-            app:icon="@drawable/baseline_logout_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:onClick="onClickLogout"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/YInMn_Blue"
+        android:onClick="onClickLogout"
+        android:text="@string/sair_da_conta"
+        android:textAlignment="textStart"
+        app:icon="@drawable/baseline_logout_24"
+        app:layout_constraintBottom_toTopOf="@+id/guideline43"
+        app:layout_constraintEnd_toStartOf="@+id/guideline79"
+        app:layout_constraintStart_toStartOf="@+id/guideline78"
+        app:layout_constraintTop_toTopOf="@+id/guideline42" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.67" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

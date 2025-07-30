@@ -8,23 +8,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome da tarefa"
         android:labelFor="@+id/edtNomeTarefa"
-        android:textColor="@color/black"/>
+        android:text="@string/nome_da_tarefa"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/edtNomeTarefa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ex: Prova de Lógica"
-        android:inputType="textCapSentences"/>
+        android:hint="@string/ex_prova_de_logica"
+        android:inputType="textCapSentences" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Tipo"
-        android:textColor="@color/black"/>
+        android:text="@string/tipo"
+        android:textColor="@color/black" />
 
     <RadioGroup
         android:id="@+id/radioGroupTipo"
@@ -36,36 +36,41 @@
             android:id="@+id/radioProva"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prova"/>
+            android:layout_weight="1"
+            android:text="@string/prova" />
+
         <RadioButton
             android:id="@+id/radioTrabalho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Trabalho"/>
+            android:layout_weight="1"
+            android:text="@string/trabalho" />
+
         <RadioButton
             android:id="@+id/radioTarefa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Tarefa"/>
+            android:layout_weight="1"
+            android:text="@string/tarefa" />
     </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Data"
-        android:textColor="@color/black"/>
+        android:text="@string/data"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/txtDataSelecionada"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:hint="@string/clique_para_selecionar_uma_data"
         android:padding="12dp"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:background="?attr/selectableItemBackground"
-        android:hint="Clique para selecionar uma data"/>
+        android:textStyle="bold" />
 </LinearLayout>

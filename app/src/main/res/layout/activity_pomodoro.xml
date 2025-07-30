@@ -17,26 +17,88 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:orientation="horizontal"
             android:weightSum="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                <TextView android:id="@+id/txtTimerPomodoro" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="25:00" android:textColor="@color/white" android:textSize="24sp" android:textStyle="bold"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pomodoro" android:textColor="@color/white" android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTimerPomodoro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_25_00"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pomodoro"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                <TextView android:id="@+id/txtTimerPausaCurta" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05:00" android:textColor="@color/white" android:textSize="24sp" android:textStyle="bold"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pausa Curta" android:textColor="@color/white" android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTimerPausaCurta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_05_00"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pausa_curta"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                <TextView android:id="@+id/txtTimerPausaLonga" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="30:00" android:textColor="@color/white" android:textSize="24sp" android:textStyle="bold"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pausa Longa" android:textColor="@color/white" android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTimerPausaLonga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_30_00"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pausa_longa"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -44,11 +106,20 @@
     <FrameLayout
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutButtons"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <ProgressBar android:id="@+id/progressBar" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="match_parent" android:max="100" android:progress="100" android:progressDrawable="@drawable/circular_progress_bar" android:rotation="-90" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:rotation="-90" />
     </FrameLayout>
 
     <LinearLayout
@@ -64,25 +135,93 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline49">
-        <TextView android:id="@+id/btnTimer" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickTimer" android:text="Timer" />
-        <TextView android:id="@+id/btnLivros" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickLivros" android:text="Livros" />
-        <TextView android:id="@+id/btnPomodoro" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="Pomodoro" android:textStyle="bold" />
-        <TextView android:id="@+id/btnInsigths" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickInsights" android:text="Insights" />
-        <TextView android:id="@+id/btnAgenda" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:onClick="onClickAgenda" android:text="Agenda" />
+
+        <TextView
+            android:id="@+id/btnTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickTimer"
+            android:text="@string/timer" />
+
+        <TextView
+            android:id="@+id/btnLivros"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickLivros"
+            android:text="@string/livros" />
+
+        <TextView
+            android:id="@+id/btnPomodoro"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/pomodoro"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnInsigths"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickInsights"
+            android:text="@string/insights" />
+
+        <TextView
+            android:id="@+id/btnAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClickAgenda"
+            android:text="@string/agenda" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/footer"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="40dp">
-        <Button android:id="@+id/btnIniciar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Iniciar"/>
-        <Button android:id="@+id/btnPausar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:visibility="gone" android:text="Pausar"/>
-        <Button android:id="@+id/btnReiniciar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:visibility="gone" android:text="Reiniciar"/>
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnIniciar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/YInMn_Blue"
+            android:text="@string/iniciar"
+            android:textAlignment="textStart"
+            android:visibility="visible"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnPausar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/YInMn_Blue"
+            android:text="@string/pausar"
+            android:textAlignment="textStart"
+            android:visibility="gone"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnReiniciar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:backgroundTint="@color/YInMn_Blue"
+            android:text="@string/reiniciar"
+            android:textAlignment="textStart"
+            android:visibility="gone"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 
@@ -100,6 +239,7 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:contentDescription="@string/home"
             android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline92"
@@ -132,6 +272,7 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:contentDescription="@string/person"
             android:onClick="onClickPerson"
             android:paddingHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -141,20 +282,38 @@
             app:srcCompat="@drawable/baseline_person_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline47" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" app:layout_constraintGuide_percent="0.92" />
-    <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline49" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" app:layout_constraintGuide_percent="0.15" />
-    <androidx.constraintlayout.widget.Guideline android:id="@+id/guideline50" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" app:layout_constraintGuide_percent="0.2" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
 
     <ImageButton
         android:id="@+id/btnEditPomodoro"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/activity_botao_arredondado"
+        android:contentDescription="@string/add"
+        android:onClick="onClickEditarPomodoro"
         app:layout_constraintBottom_toTopOf="@+id/guideline47"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/baseline_edit_24"
-        android:background="@drawable/activity_botao_arredondado"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="15dp"
-        android:onClick="onClickEditarPomodoro"/>
+        app:srcCompat="@drawable/baseline_edit_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
