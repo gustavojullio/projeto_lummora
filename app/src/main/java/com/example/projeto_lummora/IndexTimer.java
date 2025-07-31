@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -247,14 +249,19 @@ public class IndexTimer extends AppCompatActivity {
 
     private void showAddEditDialog(final Disciplina disciplina) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(disciplina == null ? "Adicionar Disciplina" : "Editar Disciplina");
 
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_discipline_input, null);
+        builder.setView(dialogView);
+
+        TextView tituloModal = dialogView.findViewById(R.id.dialog_title);
+        tituloModal.setText(disciplina == null ? getString(R.string.adicionar_nova_disciplina) : getString(R.string.editar_disciplina));
+
+        final TextInputEditText input = dialogView.findViewById(R.id.edt_discipline_name);
+
         if (disciplina != null) {
             input.setText(disciplina.getTitulo());
         }
-        builder.setView(input);
 
         builder.setPositiveButton("Salvar", (dialog, which) -> {
             String titulo = input.getText().toString().trim();
@@ -275,7 +282,6 @@ public class IndexTimer extends AppCompatActivity {
             }
         });
         builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel());
-
         builder.show();
     }
 

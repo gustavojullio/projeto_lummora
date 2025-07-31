@@ -68,13 +68,16 @@
     <string name="data">Date</string>
     <string name="clique_para_selecionar_uma_data">Click to select a date</string>
     <string name="adicionar_nova_disciplina">Add New Subject</string>
+    <string name="editar_disciplina"> Edit subject </string>
     <string name="nome_da_disciplina">Subject Name</string>
     <string name="cor_da_disciplina_ex_rrggbb">Subject Color (ex: #RRGGBB)</string>
     <string name="definir_tempos_do_pomodoro">Set Pomodoro Times</string>
     <string name="pomodoro_minutos">Pomodoro (minutes)</string>
     <string name="pausa_curta_minutos">Short Break (minutes)</string>
     <string name="pausa_longa_minutos">Long Break (minutes)</string>
+    <string name="adicionar_novo_livro"> Add new book </string>
     <string name="nome_do_livro">Book Name</string>
+    <string name="editar_livro">Edit book</string>
     <string name="semana">Wed</string>
     <string name="dia">08</string>
 </resources>

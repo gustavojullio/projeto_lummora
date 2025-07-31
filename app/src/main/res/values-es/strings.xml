@@ -68,13 +68,16 @@
     <string name="data">Fecha</string>
     <string name="clique_para_selecionar_uma_data">Haz clic para seleccionar una fecha</string>
     <string name="adicionar_nova_disciplina">Añadir nueva asignatura</string>
+    <string name="editar_disciplina"> Editar asignatura </string>
     <string name="nome_da_disciplina">Nombre de la asignatura</string>
     <string name="cor_da_disciplina_ex_rrggbb">Color de la asignatura (ej: #RRGGBB)</string>
     <string name="definir_tempos_do_pomodoro">Establecer tiempos de Pomodoro</string>
     <string name="pomodoro_minutos">Pomodoro (minutos)</string>
     <string name="pausa_curta_minutos">Pausa corta (minutos)</string>
     <string name="pausa_longa_minutos">Pausa larga (minutos)</string>
+    <string name="adicionar_novo_livro"> Añadir nuevo libro </string>
     <string name="nome_do_livro">Nombre del libro</string>
+    <string name="editar_livro">Editar libro </string>
     <string name="semana">Mié</string>
     <string name="dia">08</string>
 </resources>

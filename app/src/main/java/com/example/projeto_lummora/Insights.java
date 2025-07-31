@@ -60,6 +60,8 @@ import java.io.IOException;
 
 public class Insights extends AppCompatActivity {
 
+    private TextView txtDataAtual;
+
     private PieChart graficoMaterias, graficoLivros;
     private BarChart graficoMediaSemanal;
     private TextView txtTempoTotalGeral, txtMediaDiaria;
@@ -86,7 +88,7 @@ public class Insights extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
 
-
+        txtDataAtual = findViewById(R.id.data);
 
         graficoMaterias = findViewById(R.id.graficoMaterias);
         graficoLivros = findViewById(R.id.graficoLivros);
@@ -105,6 +107,7 @@ public class Insights extends AppCompatActivity {
 
 
         loadAllDataFromFirebase();
+        exibirDataAtual();
     }
 
 
@@ -586,5 +589,12 @@ public class Insights extends AppCompatActivity {
         emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         startActivity(Intent.createChooser(emailIntent, "Enviar e-mail via..."));
+    }
+
+    private void exibirDataAtual() {
+        SimpleDateFormat formatadorData = new SimpleDateFormat("E, dd/MM", new Locale("pt", "BR"));
+        String dataFormatada = formatadorData.format(new Date());
+        dataFormatada = dataFormatada.substring(0, 1).toUpperCase() + dataFormatada.substring(1).replace(".", "");
+        txtDataAtual.setText(dataFormatada);
     }
 }

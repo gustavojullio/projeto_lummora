@@ -41,6 +41,8 @@ import java.util.TreeMap;
 
 public class Agenda extends AppCompatActivity {
 
+    private TextView txtDataAtual;
+
     GestureDetector gestureDetector;
     private RecyclerView recyclerView;
     private AgendaAdapter adapter;
@@ -71,12 +73,16 @@ public class Agenda extends AppCompatActivity {
         }
         databaseReference = FirebaseDatabase.getInstance().getReference("Tarefas").child(user.getUid());
 
+        txtDataAtual = findViewById(R.id.dataAtual);
+
         setupRecyclerView();
         loadTarefasFromFirebase();
         setupGestureDetector();
 
         ImageButton btnAdd = findViewById(R.id.imageButton);
         btnAdd.setOnClickListener(v -> showAddEditTarefaDialog(null));
+
+        exibirDataAtual();
     }
 
     private void setupRecyclerView() {
@@ -281,5 +287,12 @@ public class Agenda extends AppCompatActivity {
     public void onClickPerson(View view) {
         Intent intent = new Intent(Agenda.this, ConfiguracoesUsuario.class);
         startActivity(intent);
+    }
+
+    private void exibirDataAtual() {
+        SimpleDateFormat formatadorData = new SimpleDateFormat("E, dd/MM", new Locale("pt", "BR"));
+        String dataFormatada = formatadorData.format(new Date());
+        dataFormatada = dataFormatada.substring(0, 1).toUpperCase() + dataFormatada.substring(1).replace(".", "");
+        txtDataAtual.setText(dataFormatada);
     }
 }

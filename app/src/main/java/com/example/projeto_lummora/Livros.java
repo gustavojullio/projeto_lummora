@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -243,14 +245,19 @@ public class Livros extends AppCompatActivity {
 
     private void showAddEditDialog(final Livro livro) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(livro == null ? "Adicionar Livro" : "Editar Livro");
 
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_book_input, null);
+        builder.setView(dialogView);
+
+        TextView tituloModal = dialogView.findViewById(R.id.dialog_title_book);
+        tituloModal.setText(livro == null ? getString(R.string.adicionar_novo_livro) : getString(R.string.editar_livro));
+
+        final TextInputEditText input = dialogView.findViewById(R.id.edt_book_name);
+
         if (livro != null) {
             input.setText(livro.getTitulo());
         }
-        builder.setView(input);
 
         builder.setPositiveButton("Salvar", (dialog, which) -> {
             String titulo = input.getText().toString().trim();

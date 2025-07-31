@@ -8,12 +8,12 @@
     android:padding="24dp">
 
     <TextView
-        android:id="@+id/dialog_title"
+        android:id="@+id/dialog_title_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="@string/adicionar_nova_disciplina"
+        android:text="@string/adicionar_novo_livro"
         android:textColor="@color/Oxford_Blue"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -24,12 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:hint="@string/nome_da_disciplina"
+        android:hint="@string/nome_do_livro"
         app:boxStrokeColor="@color/Oxford_Blue"
         app:hintTextColor="@color/Oxford_Blue">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_discipline_name"
+            android:id="@+id/edt_book_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapSentences"
