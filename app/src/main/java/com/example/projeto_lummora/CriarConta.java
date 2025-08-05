@@ -109,7 +109,7 @@ public class CriarConta extends AppCompatActivity {
                             // Recupera o ID do usuário
                             String userId = user.getUid();
                             // Cria um objeto Usuario com os dados
-                            Usuario novoUsuario = new Usuario(nome, celular, email);
+                            Usuario novoUsuario = new Usuario(nome, celular, email,"");
 
                             // Salva o usuário no Firebase
                             databaseReference.child(userId).setValue(novoUsuario);

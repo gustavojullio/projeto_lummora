@@ -4,16 +4,18 @@ public class Usuario {
     private String nome;
     private String celular;
     private String email;
+    private String descricao;
 
     // Construtor vazio necessário para o Firebase
     public Usuario() {
     }
 
     // Construtor com parâmetros
-    public Usuario(String nome, String celular, String email) {
+    public Usuario(String nome, String celular, String email, String descricao) {
         this.nome = nome;
         this.celular = celular;
         this.email = email;
+        this.descricao = descricao;
     }
 
     // Getters e Setters necessários para o Firebase
@@ -39,5 +41,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
