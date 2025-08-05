@@ -149,7 +149,7 @@ public class Livros extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Livros.this, "Falha ao carregar livros.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Livros.this, "", Toast.LENGTH_SHORT).show();
             }
         });
     }

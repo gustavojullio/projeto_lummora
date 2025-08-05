@@ -82,7 +82,8 @@
             app:icon="@drawable/person_off"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="apagarConta"/>
 
         <Button
             android:id="@+id/button2"
@@ -95,7 +96,8 @@
             app:icon="@drawable/delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="apagarDados"/>
 
         <View
             android:id="@+id/divider6"

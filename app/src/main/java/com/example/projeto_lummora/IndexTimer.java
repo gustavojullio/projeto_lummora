@@ -149,7 +149,7 @@ public class IndexTimer extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(IndexTimer.this, "Falha ao carregar dados.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(IndexTimer.this, "", Toast.LENGTH_SHORT).show();
             }
         });
     }

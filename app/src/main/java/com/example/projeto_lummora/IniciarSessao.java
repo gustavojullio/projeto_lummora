@@ -51,13 +51,12 @@ public class IniciarSessao extends AppCompatActivity {
     }
 
 
-
-   public void onEsqueceuEmail(View v) {
+    public void onEsqueceuEmail(View v) {
         Intent intent = new Intent(IniciarSessao.this, EsqueceuEmail.class);
         startActivity(intent);
     }
 
-   /* public void onEsqueceuSenha(View v) {
+    /* public void onEsqueceuSenha(View v) {
         Intent intent = new Intent(IniciarSessao.this, EsqueceuSenha.class);
         startActivity(intent);
     }*/
@@ -104,8 +103,6 @@ public class IniciarSessao extends AppCompatActivity {
             }
         });
     }
-
-
 
     // Método para lidar com "Esqueceu a senha?"
     public void onEsqueceuSenha(View view) {
