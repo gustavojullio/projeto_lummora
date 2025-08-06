@@ -166,6 +166,9 @@ public class Pomodoro extends AppCompatActivity {
      * Gerencia a transição entre os estados do timer.
      */
     private void iniciarProximoCiclo() {
+        Intent it = new Intent(Pomodoro.this, AudioService.class);
+        it.setAction("");
+        startService(it);
         if (estadoAtual == EstadoPomodoro.PARADO) {
             // Se o timer está parado, inicia um novo ciclo de Pomodoro
             estadoAtual = EstadoPomodoro.POMODORO;
