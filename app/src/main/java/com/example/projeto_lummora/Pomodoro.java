@@ -363,8 +363,8 @@ public class Pomodoro extends AppCompatActivity {
      */
     private void setupGestureDetector() {
         gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
-            private static final int SWIPE_THRESHOLD = 100; // Distância mínima para ser considerado swipe
-            private static final int SWIPE_VELOCITY_THRESHOLD = 100; // Velocidade mínima para ser considerado swipe
+            private static final int SWIPE_THRESHOLD = 400; // Distância mínima para ser considerado swipe
+            private static final int SWIPE_VELOCITY_THRESHOLD = 400; // Velocidade mínima para ser considerado swipe
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {

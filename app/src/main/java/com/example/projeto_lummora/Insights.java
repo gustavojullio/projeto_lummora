@@ -108,6 +108,7 @@ public class Insights extends AppCompatActivity {
 
         loadAllDataFromFirebase();
         exibirDataAtual();
+        setupGestureDetector();
     }
 
 
@@ -296,8 +297,8 @@ public class Insights extends AppCompatActivity {
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5, 10, 5, 5);
-        pieChart.setDragDecelerationFrictionCoef(0.95f);
         pieChart.setDrawHoleEnabled(true);
+        pieChart.setRotationEnabled(false);
         pieChart.setHoleColor(ContextCompat.getColor(this, R.color.YInMn_Blue));
         pieChart.setTransparentCircleRadius(0f);
         pieChart.setEntryLabelColor(Color.BLACK);
@@ -325,8 +326,8 @@ public class Insights extends AppCompatActivity {
 
     private void setupGestureDetector() {
         gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
-            private static final int SWIPE_THRESHOLD = 100;
-            private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+            private static final int SWIPE_THRESHOLD = 400;
+            private static final int SWIPE_VELOCITY_THRESHOLD = 400;
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
