@@ -139,7 +139,16 @@ public class ConfiguracoesConta extends AppCompatActivity {
                     }
                     user.delete().addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            FirebaseAuth.getInstance().signOut();
                             Toast.makeText(getApplicationContext(), "Conta Apagada com sucesso", Toast.LENGTH_SHORT).show();
+                            if (user != null) {
+                                if (user.isEmailVerified()) {
+
+                                    Intent it = new Intent(ConfiguracoesConta.this, MainActivity.class);
+                                    startActivity(it);
+                                    finish();
+                                }
+                            }
                         } else {
                             Toast.makeText(getApplicationContext(), "Erro: " + task.getException(), Toast.LENGTH_SHORT).show();
                         }

@@ -32,10 +32,17 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-        if (user != null){
-            Intent it = new Intent(MainActivity.this, IndexTimer.class);
-            startActivity(it);
+        if (user != null) {
+            if (user.isEmailVerified()) {
+
+                Intent it = new Intent(MainActivity.this, IndexTimer.class);
+                startActivity(it);
+                finish();
+            }
+        } else {
+
         }
+
     }
 
     public void onIniciar(View v) {

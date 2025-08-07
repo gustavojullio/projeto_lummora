@@ -17,10 +17,11 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">  <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Agenda"
@@ -54,7 +55,7 @@
             android:exported="false" />
         <activity
             android:name=".IndexTimer"
-            android:exported="false"> </activity>
+            android:exported="false"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
@@ -69,7 +70,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-        <service android:name=".AudioService"/>
+        <service android:name=".AudioService" />
     </application>
 
 </manifest>

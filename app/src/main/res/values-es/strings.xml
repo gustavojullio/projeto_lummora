@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">projeto_lummora</string>
+    <string name="app_name">Lummora</string>
     <string name="timer">Temporizador</string>
     <string name="livros">Libros</string>
     <string name="pomodoro">Pomodoro</string>

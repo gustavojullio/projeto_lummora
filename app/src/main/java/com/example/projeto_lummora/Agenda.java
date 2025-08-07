@@ -109,7 +109,7 @@ public class Agenda extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Agenda.this, "Erro ao carregar tarefas", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

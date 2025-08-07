@@ -101,49 +101,30 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/txtEsqueceuEmail"
+        android:id="@+id/txtEsqueceuSenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="5dp"
         android:fontFamily="@font/inter_medium"
-        android:onClick="onEsqueceuEmail"
-        android:text="@string/esqueceu_seu_e_mail"
-        android:textAlignment="center"
+        android:onClick="onEsqueceuSenha"
+        android:text="@string/esqueceu_a_senha_2"
+        android:textAlignment="viewStart"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSessao" />
-
-    <TextView
-        android:id="@+id/txtEsqueceuSenha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="5dp"
-        android:fontFamily="@font/inter_medium"
-        android:onClick="onEsqueceuSenha"
-        android:text="@string/esqueceu_a_senha_2"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toBottomOf="@+id/btnIniciarSessao" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:background="@color/Rich_black"
         app:layout_constraintEnd_toStartOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/txtEsqueceuEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEsqueceuSenha" />
 
     <View
         android:id="@+id/divider3"
