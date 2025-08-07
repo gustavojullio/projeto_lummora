@@ -167,13 +167,13 @@ public class Pomodoro extends AppCompatActivity {
      */
     private void iniciarProximoCiclo() {
         Intent it = new Intent(Pomodoro.this, AudioService.class);
-        it.setAction("");
-        startService(it);
+        String acao = "";
         if (estadoAtual == EstadoPomodoro.PARADO) {
             // Se o timer está parado, inicia um novo ciclo de Pomodoro
             estadoAtual = EstadoPomodoro.POMODORO;
             ciclosPomodoro = 1; // Reseta a contagem de ciclos
             iniciarTimer(TEMPO_POMODORO);
+            acao = "INICIO";
         } else if (estadoAtual == EstadoPomodoro.POMODORO) {
             // Após um Pomodoro, decide se é pausa curta ou longa
             if (ciclosPomodoro % 4 == 0) { // Regra do Pomodoro: Pausa Longa após 4 Pomodoros
@@ -183,16 +183,20 @@ public class Pomodoro extends AppCompatActivity {
                 estadoAtual = EstadoPomodoro.PAUSA_CURTA;
                 iniciarTimer(TEMPO_PAUSA_CURTA);
             }
+            acao = "FINAL";
         } else if (estadoAtual == EstadoPomodoro.PAUSA_CURTA) {
             // Após uma Pausa Curta, volta para o Pomodoro
             estadoAtual = EstadoPomodoro.POMODORO;
             ciclosPomodoro++; // Incrementa o contador de Pomodoros completados
             iniciarTimer(TEMPO_POMODORO);
+            acao = "INICIO";
         } else if (estadoAtual == EstadoPomodoro.PAUSA_LONGA) {
             // Após uma Pausa Longa, o ciclo completo é encerrado e reiniciado
             reiniciarCiclo(); // Volta ao estado PARADO
             Toast.makeText(this, "Ciclo Pomodoro completo!", Toast.LENGTH_SHORT).show();
         }
+        it.setAction(acao);
+        startService(it);
     }
 
     /**
