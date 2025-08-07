@@ -157,7 +157,7 @@
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/YInMn_Blue"
         android:fontFamily="@font/inter_semibold"
-        android:onClick="onEntrar"
+        android:onClick="onSignInWithGoogle"
         android:text="@string/iniciar_sessao_com_google"
         android:textSize="11sp"
         app:cornerRadius="10dp"

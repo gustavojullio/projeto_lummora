@@ -1,11 +1,13 @@
 package com.example.projeto_lummora;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -111,4 +113,35 @@ public class ConfiguracoesUsuario extends AppCompatActivity {
 
         dbDesc.setValue(texto);
     }
+
+
+    public void convidarAmigo(View view) {
+
+        String appStoreLink = "https://play.google.com/store/apps/details?id=com.exemplo.seuapp";
+        String mensagem = "Olá! Conheça este aplicativo incrível que estou usando: " + appStoreLink;
+
+        // Cria a Intent para compartilhar a mensagem.
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, mensagem);
+
+        // Cria e exibe um seletor de aplicativos (chooser).
+        // Isso permite que o usuário escolha qual app usar para compartilhar a mensagem.
+        Intent chooser = Intent.createChooser(intent, "Compartilhar via...");
+
+        try {
+            // Tenta iniciar a Intent com o seletor.
+            startActivity(chooser);
+        } catch (Exception e) {
+            // Se não houver nenhum aplicativo que possa lidar com a Intent, exibe uma mensagem de erro.
+            Toast.makeText(this, "Não há aplicativos para compartilhar a mensagem.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onAbrirAgenda(View view) {
+        Intent intent = new Intent(this, Agenda.class);
+        startActivity(intent);
+    }
+
+
 }

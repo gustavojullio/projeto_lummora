@@ -80,5 +80,7 @@
     <string name="editar_livro">Editar livro </string>
     <string name="semana">qua</string>
     <string name="dia">08</string>
+    <string name="default_web_client_id">"936887833672-7utat4ehuu685jmt4pvsqppdlnp92gre.apps.googleusercontent.com"</string>
+
 
 </resources>

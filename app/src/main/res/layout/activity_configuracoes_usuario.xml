@@ -132,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.40" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
+            app:layout_constraintGuide_percent="0.7" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline87"
@@ -201,7 +201,7 @@
             android:maxLines="3"
             android:nestedScrollingEnabled="false"
             android:padding="5dp"
-            android:textColor="@color/Platinum"
+            android:textColor="@color/Rich_black"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline88"
             app:layout_constraintEnd_toStartOf="@+id/guideline86"
@@ -214,14 +214,17 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
-            android:backgroundTint="@color/Oxford_Blue"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/Platinum"
+            android:onClick="salvarBio"
             android:text="Salvar bio"
+            android:textColor="@color/Oxford_Blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline86"
             app:layout_constraintStart_toStartOf="@+id/guideline85"
-            app:layout_constraintTop_toTopOf="@+id/guideline88"
-            android:onClick="salvarBio"/>
+            app:layout_constraintTop_toTopOf="@+id/guideline88" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -246,6 +249,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button2" />
 
+        <!-- Botão para convidar amigos, agora com o atributo 'onClick' -->
         <Button
             android:id="@+id/button3"
             android:layout_width="0dp"
@@ -254,12 +258,14 @@
             android:backgroundTint="@color/YInMn_Blue"
             android:text="@string/convidar_amigos"
             android:textAlignment="textStart"
+            android:onClick="convidarAmigo"
             app:icon="@drawable/baseline_person_add_alt_1_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <!-- Botão para o calendário, agora com o atributo 'onClick' para a nova função -->
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
@@ -267,6 +273,7 @@
             android:backgroundTint="@color/YInMn_Blue"
             android:text="@string/calendario"
             android:textAlignment="textStart"
+            android:onClick="onAbrirAgenda"
             app:icon="@drawable/baseline_calendar_month_24"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -328,6 +335,4 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.75" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
